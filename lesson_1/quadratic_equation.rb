@@ -6,8 +6,8 @@
 #   Если D = 0, то выводим дискриминант и 1 корень (т.к. корни в этом случае равны)
 #   Если D < 0, то выводим дискриминант и сообщение "Корней нет"
 
-def fillValue(valueName)
-  puts "Введите \"#{valueName}\":"
+def fill_value(value_name)
+  puts "Введите \"#{value_name}\":"
   value = gets.chomp.to_i
   if value == nil
     puts "Некоректное значение. Прощайте."
@@ -16,25 +16,25 @@ def fillValue(valueName)
   return value
 end
 
-def processDiscriminant(b, a, c)
+def process_discriminant(b, a, c)
   return b * b - 4 * a * c
 end
 
-def processResult(a, b, discriminant, isAddRadical = true)
-  return -b + (isAddRadical ? 1 : -1)*Math.sqrt(discriminant)/2.0*a
+def process_result(a, b, discriminant, is_add_radical = true)
+  return -b + (is_add_radical ? 1 : -1)*Math.sqrt(discriminant)/2.0*a
 end
 
-a = fillValue('a')
-b = fillValue('b')
-c = fillValue('c')
+a = fill_value('a')
+b = fill_value('b')
+c = fill_value('c')
 
-discriminant = processDiscriminant(b, a, c)
+discriminant = process_discriminant(b, a, c)
 if discriminant < 0
   puts "Корней нет"
 elsif discriminant == 0
   puts "D = #{discriminant}, x1 = x2 = #{-b/2.0*a}"
 elsif discriminant > 0
-  puts "D = #{discriminant}, x1 = #{processResult(a,b,discriminant)}, x2 = #{processResult(a,b,discriminant, false)}"
+  puts "D = #{discriminant}, x1 = #{process_result(a,b,discriminant)}, x2 = #{process_result(a,b,discriminant, false)}"
   
 end
 
