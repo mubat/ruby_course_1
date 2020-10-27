@@ -13,7 +13,7 @@ currentHeight = gets.chomp.to_i
 idealWeight = (currentHeight - 110) * 1.15
 
 if idealWeight.positive?
-	puts userName + ", идеальный вес для Вас #{idealWeight.round} кг."
+  puts userName + ", идеальный вес для Вас #{idealWeight.round} кг."
 else
-	puts "Ваш вес уже оптимальный"
+  puts "Ваш вес уже оптимальный"
 end
