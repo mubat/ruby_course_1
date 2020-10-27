@@ -13,15 +13,15 @@ def fill_value(value_name)
     puts "Некоректное значение. Прощайте."
     exit
   end
-  return value
+  value
 end
 
 def process_discriminant(b, a, c)
-  return b * b - 4 * a * c
+  b * b - 4 * a * c
 end
 
 def process_result(a, b, discriminant, is_add_radical = true)
-  return -b + (is_add_radical ? 1 : -1)*Math.sqrt(discriminant)/2.0*a
+  -b + (is_add_radical ? 1 : -1)*Math.sqrt(discriminant)/2.0*a
 end
 
 a = fill_value('a')
