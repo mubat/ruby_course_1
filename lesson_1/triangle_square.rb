@@ -13,4 +13,4 @@ if a.negative? || h.negative?
   exit(1)
 end
 
-puts "Площадь треугольника S = #{1.0/2*a*h}."
+puts "Площадь треугольника S = #{1.0 / 2 * a * h}."

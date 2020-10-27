@@ -21,7 +21,7 @@ def process_discriminant(b, a, c)
 end
 
 def process_result(a, b, discriminant, is_add_radical = true)
-  -b + (is_add_radical ? 1 : -1)*Math.sqrt(discriminant)/2.0*a
+  -b + (is_add_radical ? 1 : -1) * Math.sqrt(discriminant) / 2.0 * a
 end
 
 a = fill_value('a')
@@ -32,7 +32,7 @@ discriminant = process_discriminant(b, a, c)
 if discriminant < 0
   puts "Корней нет"
 elsif discriminant == 0
-  puts "D = #{discriminant}, x1 = x2 = #{-b/2.0*a}"
+  puts "D = #{discriminant}, x1 = x2 = #{-b / 2.0 * a}"
 elsif discriminant > 0
   puts "D = #{discriminant}, x1 = #{process_result(a,b,discriminant)}, x2 = #{process_result(a,b,discriminant, false)}"
   
