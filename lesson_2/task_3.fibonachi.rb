@@ -13,7 +13,7 @@ fibbonachi.each_index do |i|
 end
 
 # secibd variant
-fibbonachi2 = Array.new()
+fibbonachi2 = []
 100.times do |i|
   if i < 2
     fibbonachi2[i] = i
