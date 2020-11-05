@@ -1,5 +1,5 @@
 ### Заполнить массив числами от 10 до 100 с шагом 5
-result_array = Array.new
+result_array = []
 (10..100).each {|i| result_array.push(i) if i % 5 == 0 }
 
 #second variant

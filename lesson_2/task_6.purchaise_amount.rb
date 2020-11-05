@@ -8,7 +8,7 @@
 # купленного товара. Также вывести итоговую сумму за каждый товар.
 # Вычислить и вывести на экран итоговую сумму всех покупок в "корзине".
 
-basket = Hash.new
+basket = {}
 total_amount = 0.0
 loop do 
 
@@ -19,7 +19,7 @@ loop do
     break
   end
 
-  basket[product_name] = Hash.new
+  basket[product_name] = {}
   print "Введите цену: "
   basket[product_name]['product_price'] = gets.chomp.to_f.abs
   print "Введите количество: "
