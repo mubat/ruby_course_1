@@ -27,11 +27,11 @@ class Station
 
   def send_train(number)
     if !@@trains.has_key?(number)
-      puts 'No one train with number #{number} found'
+      puts "No one train with number #{number} found"
       return
     end
 
-    puts 'Go go #{number} train.'
+    puts "Go go #{number} train."
     @@trains.delete(number)
   end
 
