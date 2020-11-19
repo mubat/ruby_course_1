@@ -34,4 +34,12 @@ class Route
     print @end_station.name
   end
 
+  def start_station
+    @way_stations[0]
+  end
+
+  def end_station
+    @way_stations.last    
+  end
+
 end

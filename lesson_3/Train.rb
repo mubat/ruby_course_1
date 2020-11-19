@@ -1,11 +1,11 @@
 ### Класс Train (Поезд):
-# Имеет номер (произвольная строка) и тип (грузовой, пассажирский) и количество вагонов, эти данные указываются при создании экземпляра класса
-# Может набирать скорость
-# Может возвращать текущую скорость
-# Может тормозить (сбрасывать скорость до нуля)
-# Может возвращать количество вагонов
-# Может прицеплять/отцеплять вагоны (по одному вагону за операцию, метод просто увеличивает или уменьшает количество вагонов). Прицепка/отцепка вагонов может осуществляться только если поезд не движется.
-# Может принимать маршрут следования (объект класса Route). 
+## Имеет номер (произвольная строка) и тип (грузовой, пассажирский) и количество вагонов, эти данные указываются при создании экземпляра класса
+## Может набирать скорость
+## Может возвращать текущую скорость
+## Может тормозить (сбрасывать скорость до нуля)
+## Может возвращать количество вагонов
+## Может прицеплять/отцеплять вагоны (по одному вагону за операцию, метод просто увеличивает или уменьшает количество вагонов). Прицепка/отцепка вагонов может осуществляться только если поезд не движется.
+## Может принимать маршрут следования (объект класса Route). 
 # При назначении маршрута поезду, поезд автоматически помещается на первую станцию в маршруте.
 # Может перемещаться между станциями, указанными в маршруте. Перемещение возможно вперед и назад, но только на 1 станцию за раз.
 # Возвращать предыдущую станцию, текущую, следующую, на основе маршрута
@@ -19,7 +19,7 @@ class Train
     @carriage_amount = carriage_amount
   end
 
-  def encrease_speed(value = 10)
+  def speed_encrease(value = 10)
     @speed = @speed + value
   end
 
@@ -47,6 +47,35 @@ class Train
     end
 
     @carriage_amount -= 1
+  end
+
+  def register_route(route)
+    @route = route
+    @current_station = @route.start_station
+  end
+
+  def go(is_in_forward_way = true)
+    next_station = is_in_forward_way ? self.next_station : self.previous_station
+    if next_station.nil?
+      puts 'There is no next station. Train will stay on current station'
+      return
+    end
+
+    @next_station = next_station
+  end
+
+  def next_station
+    if @current_station == @route.end_station
+      return nil
+    end
+    @route.way_stations[@route.way_stations.index(@current_station) + 1]
+  end
+
+  def previous_station
+    if @current_station == @route.start_station
+      return nil
+    end
+    @route.way_stations[@route.way_stations.index(@current_station) - 1]
   end
 
 end
