@@ -11,12 +11,13 @@
 # Возвращать предыдущую станцию, текущую, следующую, на основе маршрута
 
 class Train
-  attr_reader :speed, :carriage_amount
+  attr_reader :speed, :carriage_amount, :current_station
 
   def initialize(nubmer, type, carriage_amount = 0)
     @nubmer = nubmer
     @type = type
     @carriage_amount = carriage_amount
+    @speed = 0
   end
 
   def speed_encrease(value = 10)
