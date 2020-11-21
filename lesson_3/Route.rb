@@ -29,9 +29,7 @@ class Route
   end
 
   def print_stations
-    print @start_station.name + ' -> '
-    @way_stations.each {|name, station|  print @station.name + ' -> '}
-    print @end_station.name
+    @way_stations.each {|station|  print station.name + ' -> '}
   end
 
   def start_station
@@ -41,5 +39,4 @@ class Route
   def end_station
     @way_stations.last    
   end
-
 end
