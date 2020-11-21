@@ -64,17 +64,19 @@ class Train
     @next_station = next_station
   end
 
-  def next_station
+  def get_next_station
     if @current_station == @route.end_station
       return nil
     end
     @route.way_stations[@route.way_stations.index(@current_station) + 1]
   end
 
-  def previous_station
+  def get_previous_station
     if @current_station == @route.start_station
+      puts "same"
       return nil
     end
+    puts "not same"
     @route.way_stations[@route.way_stations.index(@current_station) - 1]
   end
 
