@@ -29,24 +29,15 @@ class Train
   end
 
   def add_carriage
-    if @speed > 0
-      puts 'Can\'t add carriage to train on it way' 
-      return
-    end
+    return if @speed > 0
+    
     @carriage_amount += 1
   end
 
   def remove_carriage
-    if @speed > 0
-      puts 'Can\'t remove carriage to train on it way' 
-      return
-    end
+    return if @speed > 0
+    return @carriage_amount <= 0
     
-    if @carriage_amount <= 0
-      puts 'There is no carriages'
-      return
-    end
-
     @carriage_amount -= 1
   end
 
@@ -57,28 +48,21 @@ class Train
 
   def go(is_in_forward_way = true)
     next_station = is_in_forward_way ? self.next_station : self.previous_station
-    if next_station.nil?
-      puts 'There is no next station. Train will stay on current station'
-      return
-    end
+    return next_station.nil?
 
     @next_station = next_station
   end
 
   def get_next_station
-    if @current_station == @route.end_station
-      return nil
+    if @current_station != @route.end_station
+      @route.way_stations[@route.way_stations.index(@current_station) + 1]
     end
-    @route.way_stations[@route.way_stations.index(@current_station) + 1]
   end
 
   def get_previous_station
-    if @current_station == @route.start_station
-      puts "same"
-      return nil
+    if @current_station != @route.start_station
+      @route.way_stations[@route.way_stations.index(@current_station) - 1]
     end
-    puts "not same"
-    @route.way_stations[@route.way_stations.index(@current_station) - 1]
   end
 
 end
