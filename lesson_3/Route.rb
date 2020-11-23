@@ -28,10 +28,6 @@ class Route
     puts 'Now we skip #{station.name}'
   end
 
-  def print_stations
-    @way_stations.each {|station|  print station.name + ' -> '}
-  end
-
   def start_station
     @way_stations[0]
   end
