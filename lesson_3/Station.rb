@@ -7,23 +7,23 @@
 
 class Station
   attr_reader :name
-  @@trains = {}
+  @trains = {}
 
   def initialize(name)
     @name = name
   end
 
   def take_train(train)
-    @@trains[train.number] = train
+    @trains[train.number] = train
   end
 
   def trains_on_station
-    @@trains
+    @trains
   end
 
   def trains_on_station_by_type(type)
     trains_by_type = {}
-    @@trains.each {|number, train| trains_by_type[number] = train if train.type == type}
+    @trains.each {|number, train| trains_by_type[number] = train if train.type == type}
   end
 
   def send_train(number)
@@ -33,7 +33,7 @@ class Station
     end
 
     puts "Go go #{number} train."
-    @@trains.delete(number)
+    @trains.delete(number)
   end
 
 end
