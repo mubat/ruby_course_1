@@ -46,11 +46,12 @@ class Train
     @current_station = @route.start_station
   end
 
-  def go(is_in_forward_way = true)
-    next_station = is_in_forward_way ? self.next_station : self.previous_station
-    return next_station.nil?
+  def go_forward
+    return @current_station = self.next_station
+  end
 
-    @next_station = next_station
+  def go_reverse
+    return @current_station = self.previous_station
   end
 
   def get_next_station
