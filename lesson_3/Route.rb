@@ -19,8 +19,7 @@ class Route
     if @way_stations.find_index(station.name).nil?
       puts "We already don`t stop on station #{station.name}"
       return
-    end
-    if @way_stations.length <= 2 || @way_stations[0] == station || @way_stations.last == station
+    elsif @way_stations.length <= 2 || @way_stations[0] == station || @way_stations.last == station
       puts "There is no way stations"
       return
     end
