@@ -29,16 +29,13 @@ class Train
   end
 
   def add_carriage
-    return if @speed > 0
-    
-    @carriage_amount += 1
+    @carriage_amount += 1 if @speed == 0
   end
 
   def remove_carriage
-    return if @speed > 0
     return @carriage_amount <= 0
     
-    @carriage_amount -= 1
+    @carriage_amount -= 1  if @speed == 0
   end
 
   def register_route(route)
