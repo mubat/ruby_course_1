@@ -41,6 +41,7 @@ class Train
   def register_route(route)
     @route = route
     @current_station = @route.start_station
+    @current_station.take_train(self)
   end
 
   def go_forward
