@@ -6,6 +6,7 @@
 # Может отправлять поезда (по одному за раз, при этом, поезд удаляется из списка поездов, находящихся на станции).
 
 class Station
+  attr_reader :name, :trains
   
 
   def initialize(name)
@@ -15,10 +16,6 @@ class Station
 
   def take_train(train)
     @trains.push(train)
-  end
-
-  def trains_on_station
-    @trains
   end
 
   def trains_on_station_by_type(type)
