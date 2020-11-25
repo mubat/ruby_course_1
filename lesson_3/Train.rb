@@ -48,6 +48,7 @@ class Train
 
     station.send_train(self)
     @current_station = get_next_station
+    @current_station.send_train(self)
     return if @current_station.nil?
     @current_station.take_train(self)
   end
@@ -56,6 +57,7 @@ class Train
     return unless get_next_station
 
     station.send_train(self)
+    @current_station.send_train(self)
     @current_station = get_next_station
     return if @current_station.nil?
     @current_station.take_train(self)
