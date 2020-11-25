@@ -11,7 +11,7 @@
 # Возвращать предыдущую станцию, текущую, следующую, на основе маршрута
 
 class Train
-  attr_reader :speed, :carriage_amount, :current_station
+  attr_reader :speed, :carriage_amount, :current_station, :number
 
   def initialize(number, type, carriage_amount = 0)
     @number = number
