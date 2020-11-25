@@ -24,7 +24,6 @@ class Station
   end
 
   def send_train(train)
-    train.go_forward
     puts "Go go #{train.number} train."
     @trains.delete(train)
   end

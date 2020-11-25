@@ -40,10 +40,10 @@ puts 'Next station after start: ' + train.get_next_station.name
 puts 'Current station: ' + train.current_station.name + ', route\'s start station: ' + route.start_station.name
 puts 'Previous station after start: ' + (train.get_previous_station.nil? ? 'nil' : train.get_previous_station.name)
 
-station_start.send_train(train)
+train.go_forward
 puts train.current_station == station_1 ? "[] Correct next station in route " : "[E] Train should be on `station_1`. Current: " + train.current_station.name
-station_1.send_train(train)
+train.go_forward
 puts train.current_station == station_end ? "[] Correct next station in route " : "[E] Train should be on `station_end`. Current: " + train.current_station.name
 
-station_end.send_train(train)
+train.go_forward
 puts train.current_station == station_end ? "[] Correct next station in route " : "[E] Train should be on `station_end`. Current: " + train.current_station.name
