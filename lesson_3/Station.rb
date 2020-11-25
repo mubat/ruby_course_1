@@ -20,7 +20,7 @@ class Station
 
   def trains_on_station_by_type(type)
     trains_by_type = {}
-    @trains.each {|train| trains_by_type.push(train) if train.type == type}
+    @trains.filter {|train| train.type == type}
   end
 
   def send_train(train)
