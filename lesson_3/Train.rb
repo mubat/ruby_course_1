@@ -40,8 +40,7 @@ class Train
 
   def register_route(route)
     @route = route
-    @current_station = @route.start_station
-    @current_station.take_train(self)
+    self.current_station = @route.start_station
   end
 
   def go_forward
@@ -49,8 +48,7 @@ class Train
     return unless next_station
 
     @current_station.send_train(self)
-    @current_station = next_station
-    @current_station.take_train(self)
+    self.current_station = next_station
   end
 
   def go_reverse
@@ -58,7 +56,11 @@ class Train
     return unless next_station
 
     @current_station.send_train(self)
-    @current_station = next_station
+    self.current_station = next_station
+  end
+
+  def current_station=(station)
+    @current_station = station
     @current_station.take_train(self)
   end
 
