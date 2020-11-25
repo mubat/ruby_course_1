@@ -44,21 +44,21 @@ class Train
   end
 
   def go_forward
-    return unless get_next_station
+    next_station = get_previous_station
+    return unless next_station
 
-    station.send_train(self)
-    @current_station = get_next_station
     @current_station.send_train(self)
+    @current_station = next_station
     return if @current_station.nil?
     @current_station.take_train(self)
   end
 
   def go_reverse
-    return unless get_next_station
+    next_station = get_next_station
+    return unless next_station
 
-    station.send_train(self)
     @current_station.send_train(self)
-    @current_station = get_next_station
+    @current_station = next_station
     return if @current_station.nil?
     @current_station.take_train(self)
   end
