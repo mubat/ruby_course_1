@@ -44,7 +44,7 @@ class Train
   end
 
   def go_forward
-    return unless het_next_station
+    return unless get_next_station
 
     station.send_train(self)
     @current_station = get_next_station
@@ -53,7 +53,7 @@ class Train
   end
 
   def go_reverse
-    return unless het_next_station
+    return unless get_next_station
 
     station.send_train(self)
     @current_station = get_next_station
