@@ -28,14 +28,14 @@ class Train
     @speed = 0
   end
 
-  def add_carriage
-    # @carriage_amount += 1 if @speed == 0
+  def add_carriage(carriage)
+    @carriage.push(carriage) if @speed == 0 && @carriages.index(carriage).nil?
   end
 
   def remove_carriage
-    # return @carriage_amount <= 0
+    return if @carriage_amount.length == 0
     
-    # @carriage_amount -= 1  if @speed == 0
+    @carriage.delete(carriage) if @speed == 0 && !@carriages.index(carriage).nil?
   end
 
   def register_route(route)
