@@ -11,11 +11,11 @@
 # Возвращать предыдущую станцию, текущую, следующую, на основе маршрута
 
 class Train
-  attr_reader :speed, :carriage_amount, :current_station, :number
+  attr_reader :speed, :carriages, :current_station, :number
 
-  def initialize(number, carriage_amount = 0)
+  def initialize(number)
     @number = number
-    @carriage_amount = carriage_amount
+    @carriages = []
     @speed = 0
     @@type = 'basic'
   end
@@ -29,13 +29,13 @@ class Train
   end
 
   def add_carriage
-    @carriage_amount += 1 if @speed == 0
+    # @carriage_amount += 1 if @speed == 0
   end
 
   def remove_carriage
-    return @carriage_amount <= 0
+    # return @carriage_amount <= 0
     
-    @carriage_amount -= 1  if @speed == 0
+    # @carriage_amount -= 1  if @speed == 0
   end
 
   def register_route(route)
