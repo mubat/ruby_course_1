@@ -13,13 +13,14 @@
 require_relative '../carriages/carriage.rb'
 
 class Train
-  attr_reader :speed, :carriages, :current_station, :number
+  attr_reader :speed, :carriages, :current_station
+  attr_accessor :number
 
-  def initialize(number)
+  def initialize(number, type)
     @number = number
     @carriages = []
     @speed = 0
-    @@type = 'basic'
+    @type = type
   end
 
   def speed_encrease(value = 10)
@@ -36,7 +37,7 @@ class Train
   end
 
   def remove_carriage
-    return if @carriage_amount.length == 0 || if carriage.type != self.type
+    return if @carriage_amount.length == 0 || carriage.type != self.type
     
     @carriage.delete(carriage) if @speed == 0 && !@carriages.index(carriage).nil?
   end

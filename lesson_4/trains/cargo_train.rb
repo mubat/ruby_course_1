@@ -1,8 +1,8 @@
+require_relative 'train'
 
 class CargoTrain < Train
 
-  def initialize
-    super
-    @@type = 'passenger'
+  def initialize(number)
+    super number, 'passenger'
   end
 end
