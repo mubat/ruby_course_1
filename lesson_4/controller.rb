@@ -37,6 +37,10 @@ class Controller
   end
 
   def print_stations
+    if !@stations.length
+      puts "Нет зарегистрированных станций."
+      return
+    end
     i = 0
     puts "Список зарегистрированных станций:"
     @stations.each { |station| i += 1; puts "\t#{i}. #{station.name}"}
