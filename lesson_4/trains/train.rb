@@ -13,8 +13,8 @@
 require_relative '../carriages/carriage.rb'
 
 class Train
-  attr_reader :speed, :carriages, :current_station
-  attr_accessor :number
+  attr_reader :speed, :carriages, :current_station, :type
+  attr_accessor :number 
 
   def initialize(number, type)
     @number = number
