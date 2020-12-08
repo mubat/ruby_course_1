@@ -11,6 +11,7 @@ class Controller
       {'label' => "Добавить станцию", 'action' => :add_station},
       {'label' => "Список всех станций", 'action' => :print_stations},
       {'label' => "Добавить поезд", 'action' => :add_train},
+      {'label' => "Список поездов", 'action' => :print_trains},
     ]
   end
 
@@ -63,6 +64,16 @@ class Controller
     end
 
     @trains.push(train)
+  end
+
+  def print_trains
+    if !@trains.length      
+      puts "Нет зарегистрированных поездов."
+      return
+    end
+    i = 0
+    puts "Список зарегистрированных поездов в системе:"
+    @trains.each { |train| i += 1; puts "\t#{i}. \##{train.number} - #{train.type}"}
   end
 
 end
