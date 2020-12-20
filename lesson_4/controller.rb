@@ -1,17 +1,20 @@
 require_relative 'station'
 require_relative 'trains/passenger_train'
 require_relative 'trains/cargo_train'
+require_relative 'route'
 
 class Controller
   
   def initialize
     @stations = []
     @trains = []
+    @routes = []
     @actions = [
       {'label' => "Добавить станцию", 'action' => :add_station},
       {'label' => "Список всех станций", 'action' => :print_stations},
       {'label' => "Добавить поезд", 'action' => :add_train},
       {'label' => "Список поездов", 'action' => :print_trains},
+      {'label' => "Добавить маршрут", 'action' => :add_route},
     ]
   end
 
@@ -76,4 +79,31 @@ class Controller
     @trains.each { |train| i += 1; puts "\t#{i}. \##{train.number} - #{train.type}"}
   end
 
+  def add_route
+    puts "Добавление нового маршрута."
+    printf "Выберите стартовую станцию из списка: "
+    station_start = choose_station
+    return if station_start.nil?
+    printf "Выберите конечную станцию из списка: "
+    station_end = choose_station([station_start])
+    return if station_end.nil?
+    @routes.push(Route.new(station_start, station_end))
+  end
+
+  private
+
+  def choose_station (except_stations = [])
+    return nil if @stations.length == 0
+    loop do
+      print_stations
+      choise = gets.chomp.to_i
+      if (choise.between?(1, @stations.length) && (except_stations.length == 0 || except_stations.index(@stations[choise-1]).nil?))
+        return @stations[choise-1]
+      end
+
+      puts "Выбор неправильный. Желаете повторить? y/д/+ - да"
+      is_continue = gets.chomp.downcase
+      return nil unless is_continue == 'y' || is_continue == 'д' || is_continue == '+' 
+    end
+  end
 end
