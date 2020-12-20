@@ -15,6 +15,7 @@ class Controller
       {'label' => "Добавить поезд", 'action' => :add_train},
       {'label' => "Список поездов", 'action' => :print_trains},
       {'label' => "Добавить маршрут", 'action' => :add_route},
+      {'label' => "Cписок маршрутов", 'action' => :print_routes},
     ]
   end
 
@@ -88,6 +89,16 @@ class Controller
     station_end = choose_station([station_start])
     return if station_end.nil?
     @routes.push(Route.new(station_start, station_end))
+  end
+
+  def print_routes
+    if !@routes.length      
+      puts "Нет зарегистрированных маршрутов."
+      return
+    end
+    i = 0
+    puts "Список зарегистрированных маршрутов в системе:"
+    @routes.each { |route| i += 1; puts "\t#{i}. '#{route.start_station.name} - #{route.end_station.name}'" }
   end
 
   private
