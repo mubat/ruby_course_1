@@ -25,6 +25,7 @@ class Controller
       {'label' => "Список поездов", 'action' => :print_trains},
       {'label' => "Добавить маршрут", 'action' => :add_route},
       {'label' => "Cписок маршрутов", 'action' => :print_routes},
+      {'label' => "Назначить маршрут поезду", 'action' => :register_router_for_train},
     ]
   end
 
@@ -110,6 +111,33 @@ class Controller
     @routes.each { |route| i += 1; puts "\t#{i}. '#{route.start_station.name} - #{route.end_station.name}'" }
   end
 
+
+  def register_router_for_train
+    puts "Выберите поезд из списка:"
+    print_trains
+    train = gets.chomp.to_i
+    if train > 0 && train <= @trains.length 
+      train = @trains[train-1]
+    else
+      puts "Недопустимое значение"
+      return
+    end
+
+    puts "Выберите маршрут из списка:"
+    print_routes
+    route = gets.chomp.to_i
+    if route > 0 && route <= @routes.length 
+      route = @routes[route-1]
+    else
+      puts "Недопустимое значение"
+      return
+    end
+
+    train.register_route(route)
+    puts "Зарегистрирован маршрут для поезда \##{train.number}"
+  end
+
+################
   private
 
   def choose_station (except_stations = [])
