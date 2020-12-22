@@ -1,4 +1,4 @@
-class CargoCarriage < Cargo
+class CargoCarriage < Carriage
 	
   def initialize
     @@type = 'cargo'
