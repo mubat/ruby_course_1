@@ -36,9 +36,8 @@ class Train
     @carriages.push(carriage) if @speed == 0 && @carriages.index(carriage).nil?
   end
 
-  def remove_carriage
-    return if @carriage_amount.length == 0 || carriage.type != self.type
-    
+  def remove_carriage(carriage)
+    return if @carriages.length == 0
     @carriages.delete(carriage) if @speed == 0 && !@carriages.index(carriage).nil?
   end
 
