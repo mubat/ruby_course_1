@@ -107,9 +107,7 @@ class Controller
       puts "Нет зарегистрированных маршрутов."
       return
     end
-    i = 0
-    puts "Список зарегистрированных маршрутов в системе:"
-    @routes.each { |route| i += 1; puts "\t#{i}. '#{route.start_station.name} - #{route.end_station.name}'" }
+    print_elements(@routes, "Список зарегистрированных маршрутов в системе")
   end
 
 
