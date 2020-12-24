@@ -181,4 +181,20 @@ class Controller
     puts "#{text}:"
     elements_list.each { |object| i += 1; puts "\t#{i}. #{object.to_s}" }
   end
+
+  def choose_element(elements_list, text = nil, except_list = [])
+    return nil if elements_list.length == 0
+
+    print_elements(elements_list, text)
+    loop do
+      choise = gets.chomp.to_i
+      if (choise.between?(1, elements_list.length) && (except_list.length == 0 || except_list.index(elements_list[choise-1]).nil?))
+        return elements_list[choise-1]
+      end
+
+      puts "Недопустимый выбор. Желаете повторить? y/д/+ - да"
+      is_continue = gets.chomp.downcase
+      return nil unless is_continue == 'y' || is_continue == 'д' || is_continue == '+' 
+    end
+  end
 end
