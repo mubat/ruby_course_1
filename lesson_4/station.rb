@@ -28,4 +28,8 @@ class Station
     @trains.delete(train)
   end
 
+  def to_s
+    @name
+  end
+
 end

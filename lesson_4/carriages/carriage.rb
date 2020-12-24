@@ -4,4 +4,8 @@ class Carriage
   def initialize
     @type = 'basic'
   end
+
+  def to_s
+    @type
+  end
 end
