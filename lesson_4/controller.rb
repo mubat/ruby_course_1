@@ -88,9 +88,7 @@ class Controller
       puts "Нет зарегистрированных поездов."
       return
     end
-    i = 0
-    puts "Список зарегистрированных поездов в системе:"
-    @trains.each { |train| i += 1; puts "\t#{i}. \##{train.number} - #{train.type}"}
+    print_elements(@trains, "Список зарегистрированных поездов в системе")
   end
 
   def add_route
@@ -176,5 +174,15 @@ class Controller
       is_continue = gets.chomp.downcase
       return nil unless is_continue == 'y' || is_continue == 'д' || is_continue == '+' 
     end
+  end
+
+  def print_elements(elements_list, text = nil)
+    if !elements_list.length      
+      puts "Список пуст."
+      return
+    end
+    i = 0
+    puts "#{text}:"
+    elements_list.each { |object| i += 1; puts "\t#{i}. #{object.to_s}" }
   end
 end
