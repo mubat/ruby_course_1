@@ -91,11 +91,9 @@ class Controller
 
   def add_route
     puts "Добавление нового маршрута."
-    printf "Выберите стартовую станцию из списка: "
-    station_start = choose_station
+    station_start = choose_element(@stations, "Выберите стартовую станцию из списка")
     return if station_start.nil?
-    printf "Выберите конечную станцию из списка: "
-    station_end = choose_station([station_start])
+    station_end = choose_element(@stations, "Выберите конечную станцию из списка", [station_start])
     return if station_end.nil?
     @routes.push(Route.new(station_start, station_end))
   end
