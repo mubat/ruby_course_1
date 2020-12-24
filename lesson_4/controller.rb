@@ -10,6 +10,8 @@
 require_relative 'station'
 require_relative 'trains/passenger_train'
 require_relative 'trains/cargo_train'
+require_relative 'carriages/passenger_carriage'
+require_relative 'carriages/cargo_carriage'
 require_relative 'route'
 
 class Controller
@@ -26,6 +28,7 @@ class Controller
       {'label' => "Добавить маршрут", 'action' => :add_route},
       {'label' => "Cписок маршрутов", 'action' => :print_routes},
       {'label' => "Назначить маршрут поезду", 'action' => :register_router_for_train},
+      {'label' => "Добавить вагон поезду", 'action' => :add_carriage_to_train},
     ]
   end
 
@@ -135,6 +138,26 @@ class Controller
 
     train.register_route(route)
     puts "Зарегистрирован маршрут для поезда \##{train.number}"
+  end
+
+  def add_carriage_to_train
+    puts "Выберите поезд из списка:"
+    print_trains
+    train = gets.chomp.to_i
+    if train > 0 && train <= @trains.length 
+      train = @trains[train-1]
+    else
+      puts "Недопустимое значение"
+      return
+    end
+    puts train.carriages.inspect
+
+    if train.type == 'грузовой'
+      train.add_carriage(CargoCarriage.new)
+    else 
+      train.add_carriage(PassengerCarriage.new)
+    end
+    puts train.carriages.inspect
   end
 
 ################
