@@ -199,10 +199,15 @@ class Controller
       if (choise.between?(1, elements_list.length) && (except_list.length == 0 || except_list.index(elements_list[choise-1]).nil?))
         return elements_list[choise-1]
       end
-
-      puts "Недопустимый выбор. Желаете повторить? y/д/+ - да"
-      is_continue = gets.chomp.downcase
-      return nil unless is_continue == 'y' || is_continue == 'д' || is_continue == '+' 
+      
+      return nil unless ask_confirm("Недопустимый выбор. Желаете повторить?")
     end
   end
+
+  def ask_confirm(message)
+    puts "#{message} y/д/+ - да"
+    answer = gets.chomp.downcase
+    return answer == 'y' || answer == 'д' || answer == '+' 
+  end
+
 end
