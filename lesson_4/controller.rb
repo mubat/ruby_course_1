@@ -165,21 +165,6 @@ class Controller
 ################
   private
 
-  def choose_station (except_stations = [])
-    return nil if @stations.length == 0
-    loop do
-      print_stations
-      choise = gets.chomp.to_i
-      if (choise.between?(1, @stations.length) && (except_stations.length == 0 || except_stations.index(@stations[choise-1]).nil?))
-        return @stations[choise-1]
-      end
-
-      puts "Выбор неправильный. Желаете повторить? y/д/+ - да"
-      is_continue = gets.chomp.downcase
-      return nil unless is_continue == 'y' || is_continue == 'д' || is_continue == '+' 
-    end
-  end
-
   def print_elements(elements_list, text = nil)
     if !elements_list.length      
       puts "Список пуст."
