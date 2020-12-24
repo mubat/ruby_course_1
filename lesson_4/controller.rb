@@ -28,7 +28,7 @@ class Controller
       {'label' => "Добавить маршрут", 'action' => :add_route},
       {'label' => "Cписок маршрутов", 'action' => :print_routes},
       {'label' => "Назначить маршрут поезду", 'action' => :register_router_for_train},
-      {'label' => "Добавить вагон поезду", 'action' => :add_carriage_to_train},
+      {'label' => "Добавить вагон поезду", 'action' => :hook_carriage_to_train},
     ]
   end
 
