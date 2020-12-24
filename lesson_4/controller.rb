@@ -29,6 +29,7 @@ class Controller
       {'label' => "Cписок маршрутов", 'action' => :print_routes},
       {'label' => "Назначить маршрут поезду", 'action' => :register_router_for_train},
       {'label' => "Добавить вагон поезду", 'action' => :hook_carriage_to_train},
+      {'label' => "Отцепить 1 вагон от поезда", 'action' => :unhook_carriage},
     ]
   end
 
@@ -150,6 +151,15 @@ class Controller
       train.add_carriage(PassengerCarriage.new)
     end
     puts train.carriages.inspect
+  end
+
+  def unhook_carriage
+    train = choose_element(@trains, "Выберите поезд из списка")
+    return if train.nil?
+
+    carriage_to_unhook = choose_element(train.carriages, "Какой вагон отцепить?")
+    train.remove_carriage(carriage_to_unhook)
+
   end
 
 ################
