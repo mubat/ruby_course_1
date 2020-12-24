@@ -1,6 +1,7 @@
 class Carriage
-	
+  attr_reader	:type	
+
   def initialize
-    @@type = 'basic'
+    @type = 'basic'
   end
 end

@@ -1,6 +1,6 @@
 class PassengerCarriage < Carriage
 	
   def initialize
-    @@type = 'passanger'
+    @type = 'пассажирский'
   end
 end
