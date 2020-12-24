@@ -25,6 +25,7 @@ class Controller
       {'label' => "Список всех станций", 'action' => :print_stations},
       {'label' => "Добавить поезд", 'action' => :add_train},
       {'label' => "Список поездов", 'action' => :print_trains},
+      {'label' => "Отправить поезд", 'action' => :send_train},
       {'label' => "Добавить маршрут", 'action' => :add_route},
       {'label' => "Cписок маршрутов", 'action' => :print_routes},
       {'label' => "Назначить маршрут поезду", 'action' => :register_router_for_train},
@@ -160,6 +161,26 @@ class Controller
     carriage_to_unhook = choose_element(train.carriages, "Какой вагон отцепить?")
     train.remove_carriage(carriage_to_unhook)
 
+  end
+
+  def send_train
+    train = choose_element(@trains, "Выберите поезд")
+    unless train.route?
+      puts "Поезду не указан маршрут. Сначало выставите маршрут поезду"
+      return
+    end
+    puts "В каком направлении отправить? 1 - в обратном направлении, 2 - в попутном направлении"
+    choise = gets.chomp.to_i
+    unless choise == 1 || choise ==2
+      puts "Некорректный выбор"
+      return
+    end
+    next_station = choise == 2 ? train.go_forward : train.go_reverse
+    if next_station.nil?
+      puts "Поезд не уехал. Достигнут конец маршрута"
+      return
+    end
+    puts "Поезд отправлен на станцию #{next_station.to_s}."
   end
 
 ################

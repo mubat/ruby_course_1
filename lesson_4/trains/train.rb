@@ -79,6 +79,10 @@ class Train
     end
   end
 
+  def route?
+    !@route.nil?
+  end
+
   def to_s
     "\##{@number}"
   end
