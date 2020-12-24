@@ -33,13 +33,13 @@ class Train
 
   def add_carriage(carriage)
     return if carriage.type != self.type
-    @carriage.push(carriage) if @speed == 0 && @carriages.index(carriage).nil?
+    @carriages.push(carriage) if @speed == 0 && @carriages.index(carriage).nil?
   end
 
   def remove_carriage
     return if @carriage_amount.length == 0 || carriage.type != self.type
     
-    @carriage.delete(carriage) if @speed == 0 && !@carriages.index(carriage).nil?
+    @carriages.delete(carriage) if @speed == 0 && !@carriages.index(carriage).nil?
   end
 
   def register_route(route)
