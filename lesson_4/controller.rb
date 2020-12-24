@@ -140,7 +140,7 @@ class Controller
     puts "Зарегистрирован маршрут для поезда \##{train.number}"
   end
 
-  def add_carriage_to_train
+  def hook_carriage_to_train
     puts "Выберите поезд из списка:"
     print_trains
     train = gets.chomp.to_i
