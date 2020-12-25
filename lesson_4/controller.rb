@@ -62,6 +62,12 @@ class Controller
       return
     end
     print_elements(@stations, "Список зарегистрированных станций")
+ 
+    return unless ask_confirm("Желаете увидеть поезда на станции?")
+    station_to_show = choose_element(@stations)
+    puts 'На данный момент на станции зарегистрированны следующие поезда:'
+    print_elements(station_to_show.trains_on_station_by_type('пассажирский'), "Пассажирские поезда")
+    print_elements(station_to_show.trains_on_station_by_type('грузовой'), "Грузовые поезда")
   end
 
   def add_train
@@ -187,12 +193,13 @@ class Controller
   private
 
   def print_elements(elements_list, text = nil)
-    if !elements_list.length      
-      puts "Список пуст."
+    puts "#{text}:" unless text.nil?
+    if elements_list.length == 0 || elements_list.nil?
+      puts "\tСписок пуст."
       return
     end
+
     i = 0
-    puts "#{text}:"
     elements_list.each { |object| i += 1; puts "\t#{i}. #{object.to_s}" }
   end
 
