@@ -10,14 +10,17 @@
 # Может перемещаться между станциями, указанными в маршруте. Перемещение возможно вперед и назад, но только на 1 станцию за раз.
 # Возвращать предыдущую станцию, текущую, следующую, на основе маршрута
 
-class Train
-  attr_reader :speed, :carriage_amount, :current_station, :number
+require_relative '../carriages/carriage.rb'
 
-  def initialize(number, type, carriage_amount = 0)
+class Train
+  attr_reader :speed, :carriages, :current_station, :type
+  attr_accessor :number 
+
+  def initialize(number, type)
     @number = number
-    @type = type
-    @carriage_amount = carriage_amount
+    @carriages = []
     @speed = 0
+    @type = type
   end
 
   def speed_encrease(value = 10)
@@ -28,14 +31,14 @@ class Train
     @speed = 0
   end
 
-  def add_carriage
-    @carriage_amount += 1 if @speed == 0
+  def add_carriage(carriage)
+    return if carriage.type != self.type
+    @carriages.push(carriage) if @speed == 0 && @carriages.index(carriage).nil?
   end
 
-  def remove_carriage
-    return @carriage_amount <= 0
-    
-    @carriage_amount -= 1  if @speed == 0
+  def remove_carriage(carriage)
+    return if @carriages.length == 0
+    @carriages.delete(carriage) if @speed == 0 && !@carriages.index(carriage).nil?
   end
 
   def register_route(route)
@@ -74,6 +77,14 @@ class Train
     if @current_station != @route.start_station
       @route.way_stations[@route.way_stations.index(@current_station) - 1]
     end
+  end
+
+  def route?
+    !@route.nil?
+  end
+
+  def to_s
+    "\##{@number}"
   end
 
 end

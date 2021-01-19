@@ -35,4 +35,8 @@ class Route
   def end_station
     @way_stations.last    
   end
+
+  def to_s
+    "#{self.start_station.name} - #{self.end_station.name}"
+  end
 end
