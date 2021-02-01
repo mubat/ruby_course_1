@@ -11,10 +11,13 @@
 # Возвращать предыдущую станцию, текущую, следующую, на основе маршрута
 
 require_relative '../carriages/carriage.rb'
+require_relative '../../lesson_6/manufacturer'
 
 class Train
   attr_reader :speed, :carriages, :current_station, :type
   attr_accessor :number 
+
+  include Manufacturer
 
   def initialize(number, type)
     @number = number
