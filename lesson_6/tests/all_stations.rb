@@ -14,3 +14,11 @@ if Station.all.length == 2 && Station.all[0] == station1
 else
   puts "Error. Station class does'nt store created objects" 
 end
+
+count_of_station_before = station2.class.all.length
+station3 = Station.new('station3')
+if station2.class.all.length === 3 && count_of_station_before === 2
+  puts "Station class stores all created objects correctly"
+else
+  puts "Error. Station class count is wrong" 
+end
