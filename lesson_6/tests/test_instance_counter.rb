@@ -17,10 +17,10 @@ else
   puts "Error. Class Station doesn't include `instances` method from module"
 end
 
-if Station.instance_variable_defined? '@instancesList'
-  puts "Class Station includes `instancesList` class variable from module"
+if Station.instance_variable_defined? '@instances_list'
+  puts "Class Station includes `instances_list` class variable from module"
 else 
-  puts "Error. Class Station doesn't include `instancesList` class variable from module"
+  puts "Error. Class Station doesn't include `instances_list` class variable from module"
 end
 
 if Station.instances_count == 2
