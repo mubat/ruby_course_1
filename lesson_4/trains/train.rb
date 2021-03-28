@@ -18,8 +18,7 @@ class Train
   attr_reader :speed, :carriages, :current_station, :type
   attr_accessor :number 
 
-  # train's number formats took from https://airlife.ua/chto-nado-znat-o-nymerazii-poezdov/
-  NUMBER_FORMAT = /^\d{3,4}(\/\d{3,4})?$/
+  NUMBER_FORMAT = /^[а-я\w\d]{3}\-?[а-я\w\d]{2}$/i
 
   include Manufacturer
   include Validate
