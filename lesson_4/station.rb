@@ -33,7 +33,6 @@ class Station
   end
 
   def send_train(train)
-    puts "Go go #{train.number} train."
     @trains.delete(train)
   end
 
