@@ -72,21 +72,29 @@ class Controller
 
   def add_train
     puts "Добавление поезда."
-    printf "\tВведите номер поезда: "
-    train_number = gets.chomp
 
-    printf "\tКакого типа поезд? 1 - пассажирский, 2 - грузовой: "
-    train_type = gets.chomp.to_i
-    if train_type == 1
-      train = PassengerTrain.new train_number
-    elsif train_type == 2 
-      train = CargoTrain.new train_number
-    else
-      puts "Тип не поддерживается."
-      return
+    begin
+      printf "\tВведите номер поезда: "
+      train_number = gets.chomp
+
+      printf "\tКакого типа поезд? 1 - пассажирский, 2 - грузовой: "
+      train_type = gets.chomp.to_i
+      if train_type == 1
+        train = PassengerTrain.new train_number
+      elsif train_type == 2 
+        train = CargoTrain.new train_number
+      else
+        puts "Тип не поддерживается."
+        return
+      end
+    rescue StandardError => e
+      puts "Возникла ошибка при создании записи. Причина: #{e.message}"
+      printf "Желаете повторить? (y - да): "
+      retry if gets.chomp == 'y'
+      return 
     end
-
     @trains.push(train)
+    puts "Запись о поезде #{train} создана"
   end
 
   def print_trains

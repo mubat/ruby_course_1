@@ -5,18 +5,22 @@
 # Может возвращать список поездов на станции по типу (см. ниже): кол-во грузовых, пассажирских
 # Может отправлять поезда (по одному за раз, при этом, поезд удаляется из списка поездов, находящихся на станции).
 require_relative '../lesson_6/instance_counter'
+require_relative '../lesson_7/validate'
 
 class Station
   attr_reader :name, :trains
   @@all_stations = []
 
   include InstanceCounter
+  include Validate
+
 
   def initialize(name)
     @name = name
     @trains = []
     @@all_stations.push(self)
     self.register_instance(self)
+    validate
   end
 
   def take_train(train)
@@ -29,7 +33,6 @@ class Station
   end
 
   def send_train(train)
-    puts "Go go #{train.number} train."
     @trains.delete(train)
   end
 
@@ -41,4 +44,13 @@ class Station
     @@all_stations
   end
 
+  protected
+
+  def validate
+    raise "Station should has name" if @name.nil? || @name == ''
+    raise "Station should be a string" if !@name.is_a? String
+    @trains.each do |train|
+      raise "Station should contain only Train objects as trains" if !train.is_a? Train
+    end
+  end
 end

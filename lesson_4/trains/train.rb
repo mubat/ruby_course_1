@@ -12,12 +12,16 @@
 
 require_relative '../carriages/carriage.rb'
 require_relative '../../lesson_6/manufacturer'
+require_relative '../../lesson_7/validate'
 
 class Train
   attr_reader :speed, :carriages, :current_station, :type
   attr_accessor :number 
 
+  NUMBER_FORMAT = /^[а-я\w\d]{3}\-?[а-я\w\d]{2}$/i
+
   include Manufacturer
+  include Validate
 
   @@registered_trains = []
 
@@ -27,6 +31,7 @@ class Train
     @speed = 0
     @type = type
     @@registered_trains.push(self)
+    validate
   end
 
   def speed_encrease(value = 10)
@@ -95,5 +100,19 @@ class Train
 
   def self.find(number)
     @@registered_trains.find{|train| train.number == number}
+  end
+
+  protected
+
+  def validate
+    raise "Number can't be empty" if @number.nil? || @number == ''
+    raise "Number should be a string" if !@number.is_a? String
+    raise "Number has wrong format" if @number !~ NUMBER_FORMAT
+
+    raise "Speed should be a number" if !@speed.is_a? Numeric
+    raise "Speed should be more than 0 or equal" if @speed < 0
+
+    raise "Type can't be empty" if @type.nil? || @type == ''
+    raise "Type should be a string" if !@type.is_a? String
   end
 end
