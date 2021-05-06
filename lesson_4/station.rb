@@ -44,6 +44,14 @@ class Station
     @@all_stations
   end
 
+  def apply(&block)
+    if !block_given?
+      raise LocalJumpError("no block given")
+    end
+
+    @trains.each {|train| block.call(train)}
+  end
+
   protected
 
   def validate
@@ -52,13 +60,5 @@ class Station
     @trains.each do |train|
       raise "Station should contain only Train objects as trains" if !train.is_a? Train
     end
-  end
-
-  def apply(&block)
-    if !block_given?
-      raise LocalJumpError("no block given")
-    end
-
-    @trains.each {|train| block.call(train)}
   end
 end

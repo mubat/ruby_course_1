@@ -102,6 +102,14 @@ class Train
     @@registered_trains.find{|train| train.number == number}
   end
 
+  def apply(&block)
+    if !block_given?
+      raise LocalJumpError("no block given")
+    end
+
+    @carriages.each {|carriage| block.call(carriage)}
+  end
+
   protected
 
   def validate
@@ -114,13 +122,5 @@ class Train
 
     raise "Type can't be empty" if @type.nil? || @type == ''
     raise "Type should be a string" if !@type.is_a? String
-  end
-
-  def apply(&block)
-    if !block_given?
-      raise LocalJumpError("no block given")
-    end
-
-    @carriages.each {|carriage| block.call(carriage)}
   end
 end
