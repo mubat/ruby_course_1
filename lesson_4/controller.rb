@@ -161,9 +161,11 @@ class Controller
     puts train.carriages.inspect
 
     if train.type == 'грузовой'
-      train.add_carriage(CargoCarriage.new)
+      puts "\tВведите общий объём вагона: "
+      train.add_carriage(CargoCarriage.new(gets.chomp.to_i))
     else 
-      train.add_carriage(PassengerCarriage.new)
+      puts "\tВведите пассажировместимость вагона: "
+      train.add_carriage(PassengerCarriage.new(gets.chomp.to_i))
     end
     puts train.carriages.inspect
   end
