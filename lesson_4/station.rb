@@ -53,4 +53,11 @@ class Station
       raise "Station should contain only Train objects as trains" if !train.is_a? Train
     end
   end
+
+  def apply(&block)
+    if !block_given?
+      raise LocalJumpError("no block given")
+    end
+
+    @trains.each {|train| block.call(train)}
 end
