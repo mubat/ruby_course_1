@@ -224,9 +224,7 @@ class Controller
       return
     end
 
-    station.apply do |i, train|
-      puts "\t\t#{i}. Номер: #{train.number}, тип: #{train.type}, кол-во вагонов:#{train.carriages.length}"
-    end
+    station.apply { |i, train| puts "\t\t#{i}. #{train.to_s}" }
   end
 
   def take_place_at_carriage

@@ -95,7 +95,7 @@ class Train
   end
 
   def to_s
-    "\##{@number}"
+    "Номер: \##{train.number}, тип: #{train.type}, кол-во вагонов:#{train.carriages.length}"
   end
 
   def self.find(number)
