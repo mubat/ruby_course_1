@@ -33,6 +33,7 @@ class Controller
       {'label' => "Отцепить 1 вагон от поезда", 'action' => :unhook_carriage},
       {'label' => "Вывести список вагонов у поезда", 'action' => :print_carriages_at_train},
       {'label' => "Вывести список поездов на станции", 'action' => :print_trains_at_station},
+      {'label' => "Занять место в вагоне", 'action' => :take_place_at_carriage},
     ]
   end
 
@@ -226,6 +227,40 @@ class Controller
     station.apply do |i, train|
       puts "\t\t#{i}. Номер: #{train.number}, тип: #{train.type}, кол-во вагонов:#{train.carriages.length}"
     end
+  end
+
+  def take_place_at_carriage
+    train = choose_element(@trains, "Выберите поезд из списка.")
+    if (!train)
+      puts "Поезд не выбран"
+      return
+    end
+    if (train.carriages.length == 0)
+      puts "У поезда нет вагонов"
+      return
+    end
+
+    carriage = choose_element(train.carriages, "Выберите вагон.")
+    if (!train)
+      puts "Вагон не выбран"
+      return
+    end
+
+    if(carriage.type == "грузовой")
+      puts "\tОставшееся свобоное место: #{carriage.available_volume}."
+      if carriage.available_volume <= 0
+        puts "Нет свободного пространства"
+        return
+      end
+      printf "\tСколько хотите занять? "
+      printf "\t\t"
+      puts (carriage.take_volume(gets.chomp.to_i) ? "Успешно" : "не удалось застолбить место")
+    end 
+    if(carriage.type == "пассажирский")
+      puts "\tОставшееся свобоное место: #{carriage.available_seats}."
+      printf "\t\t"
+      puts (carriage.take_seat ? "Место записано за вами" : "Нет свободных мест")
+    end 
   end
 
 ################
