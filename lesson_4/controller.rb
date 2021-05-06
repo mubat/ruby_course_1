@@ -219,7 +219,7 @@ class Controller
       return
     end
     if (station.trains.length == 0)
-      puts "На станации нет поездов"
+      puts "На станции нет поездов"
       return
     end
 
