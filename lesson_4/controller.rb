@@ -205,12 +205,7 @@ class Controller
   def print_carriages_at_train
     train = choose_element(@trains, "Выберите поезд из списка.")
     return if !train
-    train.apply do |i, carriage|
-      printf "\t\t#{i}. #{carriage.type}. "
-      printf "Свободный объём: #{carriage.available_volume.to_s}, занятый объём: #{carriage.taken_volume.to_s}." if(carriage.type == 'грузовой')
-      printf "Свободных мест: #{carriage.available_seats.to_s}, занято мест: #{carriage.taken_seats.to_s}" if(carriage.type == 'пассажирский')
-      puts ""
-    end
+    train.apply { |i, carriage| puts "\t\t#{i}. #{carriage.to_s} " }
   end
 
   def print_trains_at_station

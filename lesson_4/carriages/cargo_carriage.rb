@@ -23,5 +23,8 @@ class CargoCarriage < Carriage
     @volume - @taken_volume
   end
 
+  def to_s
+    "#{carriage.type}. Свободный объём: #{carriage.available_volume.to_s}, занятый объём: #{carriage.taken_volume.to_s}"
+  end
 
 end

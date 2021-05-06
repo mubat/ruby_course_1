@@ -21,4 +21,8 @@ class PassengerCarriage < Carriage
   def taken_seats
     @seat_numbers - @available_seats
   end
+
+  def to_s
+    "#{carriage.type}. Свободных мест: #{carriage.available_seats.to_s}, занято мест: #{carriage.taken_seats.to_s}"
+  end
 end
