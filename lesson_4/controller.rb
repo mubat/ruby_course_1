@@ -31,6 +31,7 @@ class Controller
       {'label' => "Назначить маршрут поезду", 'action' => :register_router_for_train},
       {'label' => "Добавить вагон поезду", 'action' => :hook_carriage_to_train},
       {'label' => "Отцепить 1 вагон от поезда", 'action' => :unhook_carriage},
+      {'label' => "Вывести список вагонов у поезда", 'action' => :print_carriages_at_train},
     ]
   end
 
@@ -197,6 +198,12 @@ class Controller
       return
     end
     puts "Поезд отправлен на станцию #{next_station.to_s}."
+  end
+
+  def print_carriages_at_train
+    train = choose_element(@trains, "Выберите поезд из списка.")
+    return if !train
+    train.apply { |i, carriage| puts "\t\t#{i}. #{carriage}" }
   end
 
 ################
