@@ -107,7 +107,13 @@ class Train
       raise LocalJumpError("no block given")
     end
 
-    @carriages.each {|carriage| block.call(carriage)}
+    @carriages.each_with_index do |carriage, i| 
+      if block.arity == 2
+        block.call(i, carriage)
+      else
+        block.call(carriage)
+      end
+    end
   end
 
   protected
