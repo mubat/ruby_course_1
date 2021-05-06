@@ -49,7 +49,7 @@ class Station
       raise LocalJumpError("no block given")
     end
 
-    @trains.with_index do |train, i| 
+    @trains.each_with_index do |train, i| 
       if block.arity == 2
         block.call(i, train)
       else
