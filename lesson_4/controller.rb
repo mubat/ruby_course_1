@@ -32,6 +32,7 @@ class Controller
       {'label' => "Добавить вагон поезду", 'action' => :hook_carriage_to_train},
       {'label' => "Отцепить 1 вагон от поезда", 'action' => :unhook_carriage},
       {'label' => "Вывести список вагонов у поезда", 'action' => :print_carriages_at_train},
+      {'label' => "Вывести список поездов на станции", 'action' => :print_trains_at_station},
     ]
   end
 
@@ -208,6 +209,22 @@ class Controller
       printf "Свободный объём: #{carriage.available_volume.to_s}, занятый объём: #{carriage.taken_volume.to_s}." if(carriage.type == 'грузовой')
       printf "Свободных мест: #{carriage.available_seats.to_s}, занято мест: #{carriage.taken_seats.to_s}" if(carriage.type == 'пассажирский')
       puts ""
+    end
+  end
+
+  def print_trains_at_station
+    station = choose_element(@stations, "Выберите станцию из списка.")
+    if (!station)
+      puts "Станция не выбрана"
+      return
+    end
+    if (station.trains.length == 0)
+      puts "На станации нет поездов"
+      return
+    end
+
+    station.apply do |i, train|
+      puts "\t\t#{i}. Номер: #{train.number}, тип: #{train.type}, кол-во вагонов:#{train.carriages.length}"
     end
   end
 
