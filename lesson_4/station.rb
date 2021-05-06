@@ -60,4 +60,5 @@ class Station
     end
 
     @trains.each {|train| block.call(train)}
+  end
 end
