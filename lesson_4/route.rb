@@ -25,9 +25,8 @@ class Route
   end
 
   def delete_way_station(station)
-    if @way_stations.find_index(station.name).nil?
-      return
-    elsif @way_stations.length <= 2 || @way_stations[0] == station || @way_stations.last == station
+    if @way_stations.find_index(station.name).nil? || @way_stations.length <= 2 ||
+       @way_stations[0] == station || @way_stations.last == station
       return
     end
 
