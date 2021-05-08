@@ -21,7 +21,7 @@ end
 
 puts "В корзине лежит следующее"
 basket.each do |product_name, product_data|
-  puts " * #{product_name} - #{product_data['product_count']} шт. " + 
-    "по цене #{product_data['product_price']} тугриков за штуку"
+  puts " * #{product_name} - #{product_data['product_count']} шт. " +
+       "по цене #{product_data['product_price']} тугриков за штуку"
 end
 puts "В итоге получилось #{total_amount.round(2)} тугриков за всё"

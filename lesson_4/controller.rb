@@ -273,8 +273,8 @@ class Controller
     print_elements(elements_list, text)
     loop do
       choise = gets.chomp.to_i
-      if choise.between?(1, elements_list.length) && 
-          (except_list.length.zero? || except_list.index(elements_list[choise - 1]).nil?)
+      if choise.between?(1, elements_list.length) &&
+         (except_list.length.zero? || except_list.index(elements_list[choise - 1]).nil?)
         return elements_list[choise - 1]
       end
 
