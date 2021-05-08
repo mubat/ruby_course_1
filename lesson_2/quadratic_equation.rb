@@ -5,7 +5,7 @@
 def fill_value(value_name)
   puts "Введите \"#{value_name}\":"
   value = gets.chomp.to_i
-  if value == nil
+  if value.nil?
     puts "Некоректное значение. Прощайте."
     exit
   end
