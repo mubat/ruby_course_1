@@ -236,7 +236,7 @@ class Controller
       return
     end
 
-    if (carriage.type == "грузовой")
+    if carriage.type == "грузовой"
       puts "\tОставшееся свобоное место: #{carriage.available_volume}."
       if carriage.available_volume <= 0
         puts "Нет свободного пространства"
@@ -246,7 +246,7 @@ class Controller
       printf "\t\t"
       puts (carriage.take_volume(gets.chomp.to_i) ? "Успешно" : "не удалось застолбить место")
     end
-    if (carriage.type == "пассажирский")
+    if carriage.type == "пассажирский"
       puts "\tОставшееся свобоное место: #{carriage.available_seats}."
       printf "\t\t"
       puts (carriage.take_seat ? "Место записано за вами" : "Нет свободных мест")
@@ -273,7 +273,7 @@ class Controller
     print_elements(elements_list, text)
     loop do
       choise = gets.chomp.to_i
-      if (choise.between?(1, elements_list.length) && (except_list.length.zero? || except_list.index(elements_list[choise - 1]).nil?))
+      if choise.between?(1, elements_list.length) && (except_list.length.zero? || except_list.index(elements_list[choise - 1]).nil?)
         return elements_list[choise - 1]
       end
 

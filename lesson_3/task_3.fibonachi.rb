@@ -5,7 +5,7 @@
 fibbonachi = Array.new(100)
 
 fibbonachi.each_index do |i|
-  if (i <= 1)
+  if i <= 1
     fibbonachi[i] = i
     next
   end
