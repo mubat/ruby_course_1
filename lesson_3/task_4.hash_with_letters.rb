@@ -7,9 +7,7 @@ hash_entity = {}
 vowels = ["a","e","i","o","u"]
 counter = 1
 ("a".."z").each do |letter|
-  if vowels.include? letter
-    hash_entity[letter] = counter
-  end
+  hash_entity[letter] = counter if vowels.include? letter
   counter += 1
 end
 

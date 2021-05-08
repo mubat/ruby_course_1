@@ -9,9 +9,7 @@ loop do
   print "Введите название товара: "
   product_name = gets.chomp
 
-  if product_name.downcase == "стоп"
-    break
-  end
+  break if product_name.downcase == "стоп"
 
   basket[product_name] = {}
   print "Введите цену: "

@@ -16,9 +16,7 @@ class CargoCarriage < Carriage
   # take a part of cargo volume.
   # @return [bool] operation result
   def take_volume(amount)
-    if self.available_volume < amount
-      return false
-    end
+    return false if self.available_volume < amount
 
     @taken_volume += amount
     return true

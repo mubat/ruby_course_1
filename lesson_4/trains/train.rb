@@ -72,15 +72,11 @@ class Train
   end
 
   def next_station
-    if @current_station != @route.end_station
-      @route.way_stations[@route.way_stations.index(@current_station) + 1]
-    end
+    @route.way_stations[@route.way_stations.index(@current_station) + 1] if @current_station != @route.end_station
   end
 
   def previous_station
-    if @current_station != @route.start_station
-      @route.way_stations[@route.way_stations.index(@current_station) - 1]
-    end
+    @route.way_stations[@route.way_stations.index(@current_station) - 1] if @current_station != @route.start_station
   end
 
   def route?
@@ -92,13 +88,11 @@ class Train
   end
 
   def self.find(number)
-    @@registered_trains.find{|train| train.number == number}
+    @@registered_trains.find {|train| train.number == number}
   end
 
   def apply(&block)
-    unless block_given?
-      raise LocalJumpError("no block given")
-    end
+    raise LocalJumpError("no block given") unless block_given?
 
     @carriages.each_with_index do |carriage, i|
       if block.arity == 2

@@ -50,6 +50,8 @@ class Route
 
   def validate
     raise "Route should has start and end station" if @way_stations.nil? || @way_stations.length <= 1
-    raise "Number should be a string" if (!@way_stations[0].is_a? Station) || (!@way_stations[@way_stations.length-1].is_a? Station)
+    if (!@way_stations[0].is_a? Station) || (!@way_stations[@way_stations.length-1].is_a? Station)
+      raise "Number should be a string"
+    end
   end
 end

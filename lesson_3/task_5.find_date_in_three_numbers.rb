@@ -18,9 +18,7 @@ days_in_year = day
 
 month.times do |current_month|
   days_in_year += days_in_month[current_month]
-  if month == 2 && leap?(year)
-    days_in_year += 1
-  end
+  days_in_year += 1 if month == 2 && leap?(year)
 end
 
 puts "В #{year} насчитывается #{days_in_year} дней."

@@ -6,9 +6,7 @@ result_array = []
 
 #second variant
 for i in 10..100 do
-  if (i % 5).zero?
-    result_array.push(i)
-  end
+  result_array.push(i) if (i % 5).zero?
 end
 puts result_array
 

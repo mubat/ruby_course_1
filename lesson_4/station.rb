@@ -45,9 +45,7 @@ class Station
   end
 
   def apply(&block)
-    unless block_given?
-      raise LocalJumpError("no block given")
-    end
+    raise LocalJumpError("no block given") unless block_given?
 
     @trains.each_with_index do |train, i|
       if block.arity == 2
