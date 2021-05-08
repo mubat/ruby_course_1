@@ -78,9 +78,10 @@ class Controller
 
       printf "\tКакого типа поезд? 1 - пассажирский, 2 - грузовой: "
       train_type = gets.chomp.to_i
-      if train_type == 1
+      case train_type
+      when 1
         train = PassengerTrain.new train_number
-      elsif train_type == 2
+      when 2
         train = CargoTrain.new train_number
       else
         puts "Тип не поддерживается."
