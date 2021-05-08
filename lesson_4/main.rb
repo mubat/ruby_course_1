@@ -9,10 +9,10 @@ controller = Controller.new
 loop do
   controller.print_menu
 
-    choise = gets.chomp.to_i
-    break unless controller.has_action?(choise)
+  choise = gets.chomp.to_i
+  break unless controller.has_action?(choise)
 
-    controller.call(choise)
+  controller.call(choise)
 end
 
 puts "Приложение завершило работу."
