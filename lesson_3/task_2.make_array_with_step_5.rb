@@ -13,5 +13,5 @@ puts result_array
 # rubocop: enable Style/For
 
 # third variant
-10.upto(100) { |i| result_array.push(i) if (i % 5).zero? }
+10.upto(100) { |elem| result_array.push(elem) if (elem % 5).zero? }
 puts result_array
