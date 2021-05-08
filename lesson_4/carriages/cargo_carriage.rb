@@ -5,7 +5,7 @@
 # has additional required option "volume"
 # can take some volume and show available lost
 class CargoCarriage < Carriage
-	 attr_reader :taken_volume
+   attr_reader :taken_volume
 
   def initialize(volume)
     @type = "грузовой"
