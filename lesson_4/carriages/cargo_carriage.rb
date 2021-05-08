@@ -8,6 +8,7 @@ class CargoCarriage < Carriage
   attr_reader :taken_volume
 
   def initialize(volume)
+    super
     @type = "грузовой"
     @volume = volume
     @taken_volume = 0
