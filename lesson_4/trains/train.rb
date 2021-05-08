@@ -13,7 +13,7 @@ class Train
   attr_reader :speed, :carriages, :current_station, :type
   attr_accessor :number
 
-  NUMBER_FORMAT = /^[а-я\w\d]{3}\-?[а-я\w\d]{2}$/i
+  NUMBER_FORMAT = /^[а-я\w\d]{3}-?[а-я\w\d]{2}$/i
 
   include Manufacturer
   include Validate
