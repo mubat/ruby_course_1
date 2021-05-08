@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 ### Ideal weight.
 
 puts "Как Вас зовут?"

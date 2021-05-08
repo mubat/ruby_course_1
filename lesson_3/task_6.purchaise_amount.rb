@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 ### Amount of purchaises
 
 basket = {}

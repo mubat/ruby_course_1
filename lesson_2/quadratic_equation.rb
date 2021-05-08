@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 ### Quadratic equation.
 
 def fill_value(value_name)

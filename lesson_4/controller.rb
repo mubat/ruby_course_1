@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative "station"
 require_relative "trains/passenger_train"
 require_relative "trains/cargo_train"

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 ### Get serial number of the date by the date
 
 def is_leap?(year)

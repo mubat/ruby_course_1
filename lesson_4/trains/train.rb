@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative "../carriages/carriage.rb"
 require_relative "../../lesson_6/manufacturer"
 require_relative "../../lesson_7/validate"
