@@ -4,12 +4,12 @@ require_relative '../../lesson_7/validate'
 
 ##
 # Describes general actions and information about trains
-# 
-# Can encrease speed, stop, tell a current speed, amount of carriages, hitch/unhitch carriages, 
+#
+# Can encrease speed, stop, tell a current speed, amount of carriages, hitch/unhitch carriages,
 # moves between stations in the route, register route
 class Train
   attr_reader :speed, :carriages, :current_station, :type
-  attr_accessor :number 
+  attr_accessor :number
 
   NUMBER_FORMAT = /^[а-я\w\d]{3}\-?[а-я\w\d]{2}$/i
 
@@ -100,7 +100,7 @@ class Train
       raise LocalJumpError("no block given")
     end
 
-    @carriages.each_with_index do |carriage, i| 
+    @carriages.each_with_index do |carriage, i|
       if block.arity == 2
         block.call(i, carriage)
       else

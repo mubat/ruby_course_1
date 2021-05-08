@@ -5,7 +5,7 @@ side1 = gets.to_i
 side2 = gets.to_i
 side3 = gets.to_i
 
-if !side1.positive? || !side2.positive? || !side3.positive? 
+if !side1.positive? || !side2.positive? || !side3.positive?
   puts "Неправильное значение. Величина может быть только положительная."
   exit
 end

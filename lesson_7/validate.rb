@@ -11,7 +11,7 @@ module Validate
       false
     end
 
-    protected 
+    protected
 
     def validate
 

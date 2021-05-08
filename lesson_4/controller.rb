@@ -5,11 +5,11 @@ require_relative 'carriages/passenger_carriage'
 require_relative 'carriages/cargo_carriage'
 require_relative 'route'
 
-## 
-# Has all actions that user can execute. 
+##
+# Has all actions that user can execute.
 # Can print main menu. User should choose one of them. To exit - print some bullshit
 class Controller
-  
+
   def initialize
     @stations = []
     @trains = []
@@ -49,7 +49,7 @@ class Controller
   end
 
   def add_station
-    printf "Добавление новой станции.\n\tВведите название станции: " 
+    printf "Добавление новой станции.\n\tВведите название станции: "
     @stations.push(Station.new(gets.chomp))
   end
 
@@ -59,7 +59,7 @@ class Controller
       return
     end
     print_elements(@stations, "Список зарегистрированных станций")
- 
+
     return unless ask_confirm("Желаете увидеть поезда на станции?")
     station_to_show = choose_element(@stations)
     puts 'На данный момент на станции зарегистрированны следующие поезда:'
@@ -78,7 +78,7 @@ class Controller
       train_type = gets.chomp.to_i
       if train_type == 1
         train = PassengerTrain.new train_number
-      elsif train_type == 2 
+      elsif train_type == 2
         train = CargoTrain.new train_number
       else
         puts "Тип не поддерживается."
@@ -88,14 +88,14 @@ class Controller
       puts "Возникла ошибка при создании записи. Причина: #{e.message}"
       printf "Желаете повторить? (y - да): "
       retry if gets.chomp == 'y'
-      return 
+      return
     end
     @trains.push(train)
     puts "Запись о поезде #{train} создана"
   end
 
   def print_trains
-    if !@trains.length      
+    if !@trains.length
       puts "Нет зарегистрированных поездов."
       return
     end
@@ -112,7 +112,7 @@ class Controller
   end
 
   def print_routes
-    if !@routes.length      
+    if !@routes.length
       puts "Нет зарегистрированных маршрутов."
       return
     end
@@ -124,7 +124,7 @@ class Controller
     puts "Выберите поезд из списка:"
     print_trains
     train = gets.chomp.to_i
-    if train > 0 && train <= @trains.length 
+    if train > 0 && train <= @trains.length
       train = @trains[train-1]
     else
       puts "Недопустимое значение"
@@ -134,7 +134,7 @@ class Controller
     puts "Выберите маршрут из списка:"
     print_routes
     route = gets.chomp.to_i
-    if route > 0 && route <= @routes.length 
+    if route > 0 && route <= @routes.length
       route = @routes[route-1]
     else
       puts "Недопустимое значение"
@@ -149,7 +149,7 @@ class Controller
     puts "Выберите поезд из списка:"
     print_trains
     train = gets.chomp.to_i
-    if train > 0 && train <= @trains.length 
+    if train > 0 && train <= @trains.length
       train = @trains[train-1]
     else
       puts "Недопустимое значение"
@@ -160,7 +160,7 @@ class Controller
     if train.type == 'грузовой'
       puts "\tВведите общий объём вагона: "
       train.add_carriage(CargoCarriage.new(gets.chomp.to_i))
-    else 
+    else
       puts "\tВведите пассажировместимость вагона: "
       train.add_carriage(PassengerCarriage.new(gets.chomp.to_i))
     end
@@ -242,12 +242,12 @@ class Controller
       printf "\tСколько хотите занять? "
       printf "\t\t"
       puts (carriage.take_volume(gets.chomp.to_i) ? "Успешно" : "не удалось застолбить место")
-    end 
+    end
     if(carriage.type == "пассажирский")
       puts "\tОставшееся свобоное место: #{carriage.available_seats}."
       printf "\t\t"
       puts (carriage.take_seat ? "Место записано за вами" : "Нет свободных мест")
-    end 
+    end
   end
 
 ################
@@ -273,7 +273,7 @@ class Controller
       if (choise.between?(1, elements_list.length) && (except_list.length == 0 || except_list.index(elements_list[choise-1]).nil?))
         return elements_list[choise-1]
       end
-      
+
       return nil unless ask_confirm("Недопустимый выбор. Желаете повторить?")
     end
   end
@@ -281,7 +281,7 @@ class Controller
   def ask_confirm(message)
     puts "#{message} y/д/+ - да"
     answer = gets.chomp.downcase
-    return answer == 'y' || answer == 'д' || answer == '+' 
+    return answer == 'y' || answer == 'д' || answer == '+'
   end
 
 end

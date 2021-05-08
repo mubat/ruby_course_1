@@ -1,8 +1,8 @@
 class PassengerCarriage < Carriage
   attr_reader :available_seats
-	
+
   def initialize(seat_numbers)
-    if seat_numbers <= 0 
+    if seat_numbers <= 0
       raise ArgumentError("seat_numbers can't be equal or less than 0")
     end
 

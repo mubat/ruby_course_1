@@ -30,7 +30,7 @@ elsif discriminant == 0
   puts "D = #{discriminant}, x1 = x2 = #{-b / (2.0 * a)}"
 elsif discriminant > 0
   puts "D = #{discriminant}, x1 = #{process_result(a,b,discriminant)}, x2 = #{process_result(a,b,discriminant, false)}"
-  
+
 end
 
 

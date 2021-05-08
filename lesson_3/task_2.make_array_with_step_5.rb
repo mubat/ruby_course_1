@@ -3,7 +3,7 @@ result_array = []
 (10..100).each {|i| result_array.push(i) if i % 5 == 0 }
 
 #second variant
-for i in 10..100 do 
+for i in 10..100 do
   if i % 5 == 0
     result_array.push(i)
   end

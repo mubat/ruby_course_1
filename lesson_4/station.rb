@@ -3,10 +3,10 @@ require_relative '../lesson_7/validate'
 
 ##
 # Describe Station activity and it options.
-# 
+#
 # Has name.
 # Can take trains, give a list of trains on it, send trains along the route
-# 
+#
 class Station
   attr_reader :name, :trains
   @@all_stations = []
@@ -49,7 +49,7 @@ class Station
       raise LocalJumpError("no block given")
     end
 
-    @trains.each_with_index do |train, i| 
+    @trains.each_with_index do |train, i|
       if block.arity == 2
         block.call(i, train)
       else

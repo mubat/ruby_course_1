@@ -7,7 +7,7 @@ fibbonachi.each_index do |i|
     fibbonachi[i] = i
     next
   end
-  
+
   fibbonachi[i] = fibbonachi[i-1] + fibbonachi[i-2]
 
 end

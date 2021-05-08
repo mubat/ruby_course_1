@@ -3,11 +3,11 @@ require_relative 'station'
 
 ##
 # Describe Route information and actions.
-# 
+#
 # Stores a list of stations that train should visit
 # Can add/remove station from the list (but not first and last), print a list of registered stations
-# 
-# 
+#
+#
 class Route
   attr_reader :way_stations
 
@@ -37,7 +37,7 @@ class Route
   end
 
   def end_station
-    @way_stations.last    
+    @way_stations.last
   end
 
   def to_s

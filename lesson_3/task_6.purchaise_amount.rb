@@ -2,7 +2,7 @@
 
 basket = {}
 total_amount = 0.0
-loop do 
+loop do
 
   print "Введите название товара: "
   product_name = gets.chomp
