@@ -19,7 +19,7 @@ class CargoCarriage < Carriage
     return false if available_volume < amount
 
     @taken_volume += amount
-    return true
+    true
   end
 
   # @return [Integer] left available volume

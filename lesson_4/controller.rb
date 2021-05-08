@@ -284,6 +284,6 @@ class Controller
   def ask_confirm(message)
     puts "#{message} y/д/+ - да"
     answer = gets.chomp.downcase
-    return answer == "y" || answer == "д" || answer == "+"
+    answer == "y" || answer == "д" || answer == "+"
   end
 end
