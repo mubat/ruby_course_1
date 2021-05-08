@@ -253,7 +253,7 @@ class Controller
     end
   end
 
-################
+  ################
   private
 
   def print_elements(elements_list, text = nil)
