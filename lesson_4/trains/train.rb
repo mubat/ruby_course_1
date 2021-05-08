@@ -96,7 +96,7 @@ class Train
   end
 
   def apply(&block)
-    if !block_given?
+    unless block_given?
       raise LocalJumpError("no block given")
     end
 
@@ -113,13 +113,13 @@ class Train
 
   def validate
     raise "Number can't be empty" if @number.nil? || @number == ""
-    raise "Number should be a string" if !@number.is_a? String
+    raise "Number should be a string" unless @number.is_a? String
     raise "Number has wrong format" if @number !~ NUMBER_FORMAT
 
-    raise "Speed should be a number" if !@speed.is_a? Numeric
+    raise "Speed should be a number" unless @speed.is_a? Numeric
     raise "Speed should be more than 0 or equal" if @speed.negative?
 
     raise "Type can't be empty" if @type.nil? || @type == ""
-    raise "Type should be a string" if !@type.is_a? String
+    raise "Type should be a string" unless @type.is_a? String
   end
 end

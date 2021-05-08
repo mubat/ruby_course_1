@@ -45,7 +45,7 @@ class Station
   end
 
   def apply(&block)
-    if !block_given?
+    unless block_given?
       raise LocalJumpError("no block given")
     end
 
@@ -62,9 +62,9 @@ class Station
 
   def validate
     raise "Station should has name" if @name.nil? || @name == ""
-    raise "Station should be a string" if !@name.is_a? String
+    raise "Station should be a string" unless @name.is_a? String
     @trains.each do |train|
-      raise "Station should contain only Train objects as trains" if !train.is_a? Train
+      raise "Station should contain only Train objects as trains" unless train.is_a? Train
     end
   end
 end

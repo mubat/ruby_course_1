@@ -56,7 +56,7 @@ class Controller
   end
 
   def print_stations
-    if !@stations.length
+    unless @stations.length
       puts "Нет зарегистрированных станций."
       return
     end
@@ -97,7 +97,7 @@ class Controller
   end
 
   def print_trains
-    if !@trains.length
+    unless @trains.length
       puts "Нет зарегистрированных поездов."
       return
     end
@@ -114,7 +114,7 @@ class Controller
   end
 
   def print_routes
-    if !@routes.length
+    unless @routes.length
       puts "Нет зарегистрированных маршрутов."
       return
     end
@@ -199,13 +199,13 @@ class Controller
 
   def print_carriages_at_train
     train = choose_element(@trains, "Выберите поезд из списка.")
-    return if !train
+    return unless train
     train.apply { |i, carriage| puts "\t\t#{i}. #{carriage.to_s} " }
   end
 
   def print_trains_at_station
     station = choose_element(@stations, "Выберите станцию из списка.")
-    if (!station)
+    unless (station)
       puts "Станция не выбрана"
       return
     end
@@ -219,7 +219,7 @@ class Controller
 
   def take_place_at_carriage
     train = choose_element(@trains, "Выберите поезд из списка.")
-    if (!train)
+    unless (train)
       puts "Поезд не выбран"
       return
     end
@@ -229,7 +229,7 @@ class Controller
     end
 
     carriage = choose_element(train.carriages, "Выберите вагон.")
-    if (!train)
+    unless (train)
       puts "Вагон не выбран"
       return
     end
