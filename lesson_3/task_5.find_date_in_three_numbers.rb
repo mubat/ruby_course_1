@@ -3,7 +3,7 @@
 ### Get serial number of the date by the date
 
 def leap?(year)
-  year % 4 == 0 && year % 100 != 0 && year % 400 == 0
+  (year % 4).zero? && year % 100 != 0 && (year % 400).zero?
 end
 
 print "Введите год: "

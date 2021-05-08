@@ -39,12 +39,12 @@ class Train
 
   def add_carriage(carriage)
     return if carriage.type != self.type
-    @carriages.push(carriage) if @speed == 0 && @carriages.index(carriage).nil?
+    @carriages.push(carriage) if @speed.zero? && @carriages.index(carriage).nil?
   end
 
   def remove_carriage(carriage)
-    return if @carriages.length == 0
-    @carriages.delete(carriage) if @speed == 0 && !@carriages.index(carriage).nil?
+    return if @carriages.length.zero?
+    @carriages.delete(carriage) if @speed.zero? && !@carriages.index(carriage).nil?
   end
 
   def register_route(route)
@@ -117,7 +117,7 @@ class Train
     raise "Number has wrong format" if @number !~ NUMBER_FORMAT
 
     raise "Speed should be a number" if !@speed.is_a? Numeric
-    raise "Speed should be more than 0 or equal" if @speed < 0
+    raise "Speed should be more than 0 or equal" if @speed.negative?
 
     raise "Type can't be empty" if @type.nil? || @type == ""
     raise "Type should be a string" if !@type.is_a? String

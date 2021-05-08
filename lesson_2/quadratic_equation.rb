@@ -27,11 +27,11 @@ b = fill_value("b")
 c = fill_value("c")
 
 discriminant = process_discriminant(b, a, c)
-if discriminant < 0
+if discriminant.negative?
   puts "Корней нет"
-elsif discriminant == 0
+elsif discriminant.zero?
   puts "D = #{discriminant}, x1 = x2 = #{-b / (2.0 * a)}"
-elsif discriminant > 0
+elsif discriminant.positive?
   puts "D = #{discriminant}, x1 = #{process_result(a,b,discriminant)}, x2 = #{process_result(a,b,discriminant, false)}"
 
 end

@@ -125,7 +125,7 @@ class Controller
     puts "Выберите поезд из списка:"
     print_trains
     train = gets.chomp.to_i
-    if train > 0 && train <= @trains.length
+    if train.positive? && train <= @trains.length
       train = @trains[train-1]
     else
       puts "Недопустимое значение"
@@ -135,7 +135,7 @@ class Controller
     puts "Выберите маршрут из списка:"
     print_routes
     route = gets.chomp.to_i
-    if route > 0 && route <= @routes.length
+    if route.positive? && route <= @routes.length
       route = @routes[route-1]
     else
       puts "Недопустимое значение"
@@ -150,7 +150,7 @@ class Controller
     puts "Выберите поезд из списка:"
     print_trains
     train = gets.chomp.to_i
-    if train > 0 && train <= @trains.length
+    if train.positive? && train <= @trains.length
       train = @trains[train-1]
     else
       puts "Недопустимое значение"
@@ -209,7 +209,7 @@ class Controller
       puts "Станция не выбрана"
       return
     end
-    if (station.trains.length == 0)
+    if (station.trains.length.zero?)
       puts "На станции нет поездов"
       return
     end
@@ -223,7 +223,7 @@ class Controller
       puts "Поезд не выбран"
       return
     end
-    if (train.carriages.length == 0)
+    if (train.carriages.length.zero?)
       puts "У поезда нет вагонов"
       return
     end
@@ -256,7 +256,7 @@ class Controller
 
   def print_elements(elements_list, text = nil)
     puts "#{text}:" unless text.nil?
-    if elements_list.length == 0 || elements_list.nil?
+    if elements_list.length.zero? || elements_list.nil?
       puts "\tСписок пуст."
       return
     end
@@ -266,12 +266,12 @@ class Controller
   end
 
   def choose_element(elements_list, text = nil, except_list = [])
-    return nil if elements_list.length == 0
+    return nil if elements_list.length.zero?
 
     print_elements(elements_list, text)
     loop do
       choise = gets.chomp.to_i
-      if (choise.between?(1, elements_list.length) && (except_list.length == 0 || except_list.index(elements_list[choise-1]).nil?))
+      if (choise.between?(1, elements_list.length) && (except_list.length.zero? || except_list.index(elements_list[choise-1]).nil?))
         return elements_list[choise-1]
       end
 
