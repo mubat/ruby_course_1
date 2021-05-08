@@ -12,7 +12,9 @@ require_relative "../lesson_7/validate"
 class Station
   attr_reader :name, :trains
 
+  # rubocop: disable Style/ClassVars
   @@all_stations = []
+  # rubocop: enable Style/ClassVars
 
   include InstanceCounter
   include Validate

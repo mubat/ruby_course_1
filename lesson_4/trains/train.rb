@@ -18,7 +18,9 @@ class Train
   include Manufacturer
   include Validate
 
+  # rubocop: disable Style/ClassVars
   @@registered_trains = []
+  # rubocop: enable Style/ClassVars
 
   def initialize(number, type)
     @number = number
