@@ -11,7 +11,6 @@ fibbonachi.each_index do |i|
   end
 
   fibbonachi[i] = fibbonachi[i - 1] + fibbonachi[i - 2]
-
 end
 
 # secibd variant
@@ -22,5 +21,4 @@ fibbonachi2 = []
     next
   end
   fibbonachi2[i] = fibbonachi2[i - 1] + fibbonachi2[i - 2]
-
 end

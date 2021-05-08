@@ -13,7 +13,6 @@ loop do
     break unless controller.has_action?(choise)
 
     controller.call(choise)
-
 end
 
 puts "Приложение завершило работу."
