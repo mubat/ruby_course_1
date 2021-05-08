@@ -88,7 +88,7 @@ class Train
   end
 
   def self.find(number)
-    @@registered_trains.find {|train| train.number == number}
+    @@registered_trains.find { |train| train.number == number }
   end
 
   def apply(&block)

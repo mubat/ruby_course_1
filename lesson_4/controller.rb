@@ -17,19 +17,19 @@ class Controller
     @trains = []
     @routes = []
     @actions = [
-      {"label" => "Добавить станцию", "action" => :add_station},
-      {"label" => "Список всех станций", "action" => :print_stations},
-      {"label" => "Добавить поезд", "action" => :add_train},
-      {"label" => "Список поездов", "action" => :print_trains},
-      {"label" => "Отправить поезд", "action" => :send_train},
-      {"label" => "Добавить маршрут", "action" => :add_route},
-      {"label" => "Cписок маршрутов", "action" => :print_routes},
-      {"label" => "Назначить маршрут поезду", "action" => :register_router_for_train},
-      {"label" => "Добавить вагон поезду", "action" => :hook_carriage_to_train},
-      {"label" => "Отцепить 1 вагон от поезда", "action" => :unhook_carriage},
-      {"label" => "Вывести список вагонов у поезда", "action" => :print_carriages_at_train},
-      {"label" => "Вывести список поездов на станции", "action" => :print_trains_at_station},
-      {"label" => "Занять место в вагоне", "action" => :take_place_at_carriage},
+      { "label" => "Добавить станцию", "action" => :add_station },
+      { "label" => "Список всех станций", "action" => :print_stations },
+      { "label" => "Добавить поезд", "action" => :add_train },
+      { "label" => "Список поездов", "action" => :print_trains },
+      { "label" => "Отправить поезд", "action" => :send_train },
+      { "label" => "Добавить маршрут", "action" => :add_route },
+      { "label" => "Cписок маршрутов", "action" => :print_routes },
+      { "label" => "Назначить маршрут поезду", "action" => :register_router_for_train },
+      { "label" => "Добавить вагон поезду", "action" => :hook_carriage_to_train },
+      { "label" => "Отцепить 1 вагон от поезда", "action" => :unhook_carriage },
+      { "label" => "Вывести список вагонов у поезда", "action" => :print_carriages_at_train },
+      { "label" => "Вывести список поездов на станции", "action" => :print_trains_at_station },
+      { "label" => "Занять место в вагоне", "action" => :take_place_at_carriage },
     ]
   end
 
@@ -43,11 +43,11 @@ class Controller
   end
 
   def action?(index)
-    !@actions[index-1].nil?
+    !@actions[index - 1].nil?
   end
 
   def call(index)
-    method(@actions[index-1]["action"]).call
+    method(@actions[index - 1]["action"]).call
   end
 
   def add_station
@@ -126,7 +126,7 @@ class Controller
     print_trains
     train = gets.chomp.to_i
     if train.positive? && train <= @trains.length
-      train = @trains[train-1]
+      train = @trains[train - 1]
     else
       puts "Недопустимое значение"
       return
@@ -136,7 +136,7 @@ class Controller
     print_routes
     route = gets.chomp.to_i
     if route.positive? && route <= @routes.length
-      route = @routes[route-1]
+      route = @routes[route - 1]
     else
       puts "Недопустимое значение"
       return
@@ -151,7 +151,7 @@ class Controller
     print_trains
     train = gets.chomp.to_i
     if train.positive? && train <= @trains.length
-      train = @trains[train-1]
+      train = @trains[train - 1]
     else
       puts "Недопустимое значение"
       return
@@ -185,7 +185,7 @@ class Controller
     end
     puts "В каком направлении отправить? 1 - в обратном направлении, 2 - в попутном направлении"
     choise = gets.chomp.to_i
-    unless choise == 1 || choise ==2
+    unless choise == 1 || choise == 2
       puts "Некорректный выбор"
       return
     end
@@ -234,7 +234,7 @@ class Controller
       return
     end
 
-    if(carriage.type == "грузовой")
+    if (carriage.type == "грузовой")
       puts "\tОставшееся свобоное место: #{carriage.available_volume}."
       if carriage.available_volume <= 0
         puts "Нет свободного пространства"
@@ -244,7 +244,7 @@ class Controller
       printf "\t\t"
       puts (carriage.take_volume(gets.chomp.to_i) ? "Успешно" : "не удалось застолбить место")
     end
-    if(carriage.type == "пассажирский")
+    if (carriage.type == "пассажирский")
       puts "\tОставшееся свобоное место: #{carriage.available_seats}."
       printf "\t\t"
       puts (carriage.take_seat ? "Место записано за вами" : "Нет свободных мест")
@@ -271,8 +271,8 @@ class Controller
     print_elements(elements_list, text)
     loop do
       choise = gets.chomp.to_i
-      if (choise.between?(1, elements_list.length) && (except_list.length.zero? || except_list.index(elements_list[choise-1]).nil?))
-        return elements_list[choise-1]
+      if (choise.between?(1, elements_list.length) && (except_list.length.zero? || except_list.index(elements_list[choise - 1]).nil?))
+        return elements_list[choise - 1]
       end
 
       return nil unless ask_confirm("Недопустимый выбор. Желаете повторить?")

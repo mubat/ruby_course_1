@@ -25,7 +25,7 @@ end
 
 max_side = [side1, side2, side3].max
 
-if max_side**2 == side1**2 + side2**2  + side3**2 - max_side**2
+if max_side**2 == side1**2 + side2**2 + side3**2 - max_side**2
   is_usual = false
   puts "Треугольник прямоугольный."
 end
