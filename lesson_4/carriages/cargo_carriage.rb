@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CargoCarriage < Carriage
-	attr_reader :taken_volume
+	 attr_reader :taken_volume
 
   def initialize(volume)
     @type = "грузовой"

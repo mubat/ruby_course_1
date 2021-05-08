@@ -7,7 +7,7 @@ puts "Чтобы выйти из приложения, в меню введит�
 
 controller = Controller.new
 loop do
-    controller.print_menu
+  controller.print_menu
 
     choise = gets.chomp.to_i
     if(!controller.has_action?(choise))

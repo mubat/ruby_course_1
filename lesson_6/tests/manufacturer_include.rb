@@ -4,7 +4,7 @@ require_relative "../../lesson_4/trains/cargo_train"
 require_relative "../../lesson_6/manufacturer"
 
 if CargoTrain.ancestors.include? Manufacturer
-   puts "Class CargoTrain includes `Manufacturer` module"
+  puts "Class CargoTrain includes `Manufacturer` module"
 else
   puts "Error. Class CargoTrain doesn't include `Manufacturer` module"
 end
