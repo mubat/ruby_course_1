@@ -221,38 +221,16 @@ class Controller
   end
 
   def take_place_at_carriage
-    train = choose_element(@trains, "Выберите поезд из списка.")
-    unless train
-      puts "Поезд не выбран"
-      return
-    end
-    if train.carriages.length.zero?
-      puts "У поезда нет вагонов"
-      return
-    end
+    return if (train = choose_element(@trains, "Выберите поезд из списка.")) ||
+              train.carriages.length.zero? ||
+              (carriage = choose_element(train.carriages, "Выберите вагон."))
 
-    carriage = choose_element(train.carriages, "Выберите вагон.")
-    unless train
-      puts "Вагон не выбран"
-      return
+    case carriage.type
+    when "грузовой"
+      take_place_at_cargo_carriage
+    when "пассажирский"
+      take_place_at_passanger_carriage
     end
-
-    if carriage.type == "грузовой"
-      puts "\tОставшееся свобоное место: #{carriage.available_volume}."
-      if carriage.available_volume <= 0
-        puts "Нет свободного пространства"
-        return
-      end
-      printf "\tСколько хотите занять? "
-      printf "\t\t"
-      puts(carriage.take_volume(gets.chomp.to_i) ? "Успешно" : "не удалось застолбить место")
-    end
-
-    return unless carriage.type == "пассажирский"
-
-    puts "\tОставшееся свобоное место: #{carriage.available_seats}."
-    printf "\t\t"
-    puts(carriage.take_seat ? "Место записано за вами" : "Нет свободных мест")
   end
 
   ################
@@ -288,5 +266,21 @@ class Controller
     puts "#{message} y/д/+ - да"
     answer = gets.chomp.downcase
     ["y", "д", "+"].include?(answer)
+  end
+
+  # dont want to create split controller for each type. Just create separate actions
+  def take_place_at_cargo_carriage
+    puts "\tОставшееся свобоное место: #{carriage.available_volume}."
+    if carriage.available_volume <= 0
+      puts "Нет свободного пространства"
+      return
+    end
+    printf "\tСколько хотите занять? "
+    puts carriage.take_volume(gets.chomp.to_i) ? "Успешно" : "не удалось застолбить место"
+  end
+
+  def take_place_at_passanger_carriage
+    puts "\tОставшееся свобоное место: #{carriage.available_seats}."
+    puts carriage.take_seat ? " Место записано за вами" : " Нет свободных мест"
   end
 end
