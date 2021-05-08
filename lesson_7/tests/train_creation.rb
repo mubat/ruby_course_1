@@ -51,10 +51,10 @@ else
 end
 
 train.number = "йцук"
-if !train.valid?
-  puts "Train with incorrect number not valid"
-else
+if train.valid?
   puts "Error. Train with incorrect number shouldn't be valid. [ER] false [AR] true"
+else
+  puts "Train with incorrect number not valid"
 end
 train.number = "223"
 
@@ -68,10 +68,10 @@ else
 end
 
 train_check_number_format.number = "f-2"
-if !train_check_number_format.valid?
-  puts "Train with incorrect number not valid"
-else
+if train_check_number_format.valid?
   puts "Error. Train with incorrect number returns wrong valid status. [ER] false [AR] true"
+else
+  puts "Train with incorrect number not valid"
 end
 
 train_check_number_format.number = "fedЫЯ"

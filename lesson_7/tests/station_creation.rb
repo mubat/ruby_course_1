@@ -54,8 +54,8 @@ end
 
 station2 = Station.new("station2 station")
 station2.take_train("123 train")
-if !station2.valid?
-  puts "Station with incorrect Train validates successfully"
-else
+if station2.valid?
   puts "Error. Station with incorrect Train should has errors"
+else
+  puts "Station with incorrect Train validates successfully"
 end
