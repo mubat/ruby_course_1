@@ -20,35 +20,35 @@ train1 = CargoTrain.new("113")
 begin
   Route.new(station_start, nil)
   puts "Error. Route shouldn't be created without end station"
-rescue StandardError => e
+rescue StandardError
   puts "Route without end station doesn't create"
 end
 
 begin
   Route.new(nil, station_end)
   puts "Error. Route shouldn't be created without start station"
-rescue StandardError => e
+rescue StandardError
   puts "Route without start station doesn't create"
 end
 
 begin
   Route.new(station_start, train1)
   puts "Error. Route shouldn't be created with incorrect end station"
-rescue StandardError => e
+rescue StandardError
   puts "Route with incorrect end station doesn't create"
 end
 
 begin
   Route.new(train1, station_end)
   puts "Error. Route shouldn't be created with incorrect start station"
-rescue StandardError => e
+rescue StandardError
   puts "Route with incorrect start station doesn't create"
 end
 
 begin
   Route.new(train1, station_end)
   puts "Error. Route shouldn't be created without start station"
-rescue StandardError => e
+rescue StandardError
   puts "Route without start station doesn't create"
 end
 

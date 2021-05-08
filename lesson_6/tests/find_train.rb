@@ -4,6 +4,12 @@ require_relative "../../lesson_4/trains/passenger_train"
 train1 = CargoTrain.new("train1")
 train2 = PassengerTrain.new("train2")
 
+if train2.instance_of? PassengerTrain
+  puts "PassengerTrain created successfully"
+else
+  puts "Error. Can't create instance of PassengerTrain"
+end
+
 if PassengerTrain.find("train1") == train1
   puts "Train2 found by number correctly."
 else

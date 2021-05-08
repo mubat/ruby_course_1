@@ -1,8 +1,10 @@
 require_relative "../../lesson_4/station"
 # require_relative '../instance_counter'
 
+# rubocop:disable Lint/UselessAssignment
 station1 = Station.new("station1")
 station2 = Station.new("station2")
+# rubocop:enable Lint/UselessAssignment
 
 if Station.ancestors.include? InstanceCounter
   puts "Class Station includes `InstanceCounter` module"

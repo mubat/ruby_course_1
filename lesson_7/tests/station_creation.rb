@@ -13,27 +13,24 @@ else
   puts "Error. Class CargoStation hasn't method `valid?`"
 end
 
-train1 = CargoTrain.new("113")
-train2 = CargoTrain.new("114")
-
 begin
   Station.new(111)
   puts "Error. Station shouldn't be created with number as name"
-rescue StandardError => e
+rescue StandardError
   puts "Station number as name doesn't create"
 end
 
 begin
   Station.new(nil)
   puts "Error. Station shouldn't be created without name"
-rescue StandardError => e
+rescue StandardError
   puts "Station without name doesn't create"
 end
 
 begin
   Station.new("name")
   puts "Station with correct name created successfully"
-rescue StandardError => e
+rescue StandardError
   puts "Error. Station with correct name should be created. Error: #{e.message}"
 end
 

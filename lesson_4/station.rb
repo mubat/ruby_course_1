@@ -27,7 +27,6 @@ class Station
   end
 
   def trains_on_station_by_type(type)
-    trains_by_type = {}
     @trains.filter {|train| train.type == type}
   end
 
