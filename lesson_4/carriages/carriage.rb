@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+##
+# General class for all carriages. Has common actions
 class Carriage
   attr_reader	:type
 

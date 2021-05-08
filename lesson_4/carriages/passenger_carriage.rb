@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+##
+# Describes Carriage with type "passanger"
+# has additional required option "number of seats"
+# You can take on seat of get number of available seats or taken seats
 class PassengerCarriage < Carriage
   attr_reader :available_seats
 

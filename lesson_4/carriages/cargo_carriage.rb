@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+##
+# Describes Carriage with type "cargo"
+# has additional required option "volume"
+# can take some volume and show available lost
 class CargoCarriage < Carriage
 	 attr_reader :taken_volume
 
