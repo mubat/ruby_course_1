@@ -30,7 +30,7 @@ class Train
   end
 
   def speed_encrease(value = 10)
-    @speed = @speed + value
+    @speed += value
   end
 
   def stop
