@@ -17,7 +17,7 @@ def process_discriminant(b, a, c)
   b * b - 4 * a * c
 end
 
-def process_result(a, b, discriminant, is_add_radical = true)
+def process_result(a, b, discriminant, is_add_radical: true)
   puts "discriminant #{discriminant}"
   (-b + (is_add_radical ? 1 : -1) * Math.sqrt(discriminant)) / (2.0 * a)
 end
