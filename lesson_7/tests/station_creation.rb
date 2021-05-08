@@ -64,4 +64,3 @@ if !station2.valid?
 else
   puts "Error. Station with incorrect Train should has errors"
 end
-

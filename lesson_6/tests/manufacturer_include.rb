@@ -20,4 +20,3 @@ if cargo_train.manufacturerName === 'test_manufacturer'
 else
   puts "Error. Instance of CargoTrain doesn't can set and get manufacturer name"
 end
-

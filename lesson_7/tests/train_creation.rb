@@ -80,4 +80,3 @@ if train_check_number_format.valid?
 else
   puts "Error. Train with correct number should be valid. [ER] true [AR] false"
 end
-
