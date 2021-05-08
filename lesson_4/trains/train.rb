@@ -95,11 +95,25 @@ class Train
   end
 
   def to_s
-    "\##{@number}"
+    "Номер: \##{train.number}, тип: #{train.type}, кол-во вагонов:#{train.carriages.length}"
   end
 
   def self.find(number)
     @@registered_trains.find{|train| train.number == number}
+  end
+
+  def apply(&block)
+    if !block_given?
+      raise LocalJumpError("no block given")
+    end
+
+    @carriages.each_with_index do |carriage, i| 
+      if block.arity == 2
+        block.call(i, carriage)
+      else
+        block.call(carriage)
+      end
+    end
   end
 
   protected

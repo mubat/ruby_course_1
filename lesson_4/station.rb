@@ -44,6 +44,20 @@ class Station
     @@all_stations
   end
 
+  def apply(&block)
+    if !block_given?
+      raise LocalJumpError("no block given")
+    end
+
+    @trains.each_with_index do |train, i| 
+      if block.arity == 2
+        block.call(i, train)
+      else
+        block.call(train)
+      end
+    end
+  end
+
   protected
 
   def validate

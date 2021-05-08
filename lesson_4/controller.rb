@@ -31,6 +31,9 @@ class Controller
       {'label' => "Назначить маршрут поезду", 'action' => :register_router_for_train},
       {'label' => "Добавить вагон поезду", 'action' => :hook_carriage_to_train},
       {'label' => "Отцепить 1 вагон от поезда", 'action' => :unhook_carriage},
+      {'label' => "Вывести список вагонов у поезда", 'action' => :print_carriages_at_train},
+      {'label' => "Вывести список поездов на станции", 'action' => :print_trains_at_station},
+      {'label' => "Занять место в вагоне", 'action' => :take_place_at_carriage},
     ]
   end
 
@@ -161,9 +164,11 @@ class Controller
     puts train.carriages.inspect
 
     if train.type == 'грузовой'
-      train.add_carriage(CargoCarriage.new)
+      puts "\tВведите общий объём вагона: "
+      train.add_carriage(CargoCarriage.new(gets.chomp.to_i))
     else 
-      train.add_carriage(PassengerCarriage.new)
+      puts "\tВведите пассажировместимость вагона: "
+      train.add_carriage(PassengerCarriage.new(gets.chomp.to_i))
     end
     puts train.carriages.inspect
   end
@@ -195,6 +200,60 @@ class Controller
       return
     end
     puts "Поезд отправлен на станцию #{next_station.to_s}."
+  end
+
+  def print_carriages_at_train
+    train = choose_element(@trains, "Выберите поезд из списка.")
+    return if !train
+    train.apply { |i, carriage| puts "\t\t#{i}. #{carriage.to_s} " }
+  end
+
+  def print_trains_at_station
+    station = choose_element(@stations, "Выберите станцию из списка.")
+    if (!station)
+      puts "Станция не выбрана"
+      return
+    end
+    if (station.trains.length == 0)
+      puts "На станции нет поездов"
+      return
+    end
+
+    station.apply { |i, train| puts "\t\t#{i}. #{train.to_s}" }
+  end
+
+  def take_place_at_carriage
+    train = choose_element(@trains, "Выберите поезд из списка.")
+    if (!train)
+      puts "Поезд не выбран"
+      return
+    end
+    if (train.carriages.length == 0)
+      puts "У поезда нет вагонов"
+      return
+    end
+
+    carriage = choose_element(train.carriages, "Выберите вагон.")
+    if (!train)
+      puts "Вагон не выбран"
+      return
+    end
+
+    if(carriage.type == "грузовой")
+      puts "\tОставшееся свобоное место: #{carriage.available_volume}."
+      if carriage.available_volume <= 0
+        puts "Нет свободного пространства"
+        return
+      end
+      printf "\tСколько хотите занять? "
+      printf "\t\t"
+      puts (carriage.take_volume(gets.chomp.to_i) ? "Успешно" : "не удалось застолбить место")
+    end 
+    if(carriage.type == "пассажирский")
+      puts "\tОставшееся свобоное место: #{carriage.available_seats}."
+      printf "\t\t"
+      puts (carriage.take_seat ? "Место записано за вами" : "Нет свободных мест")
+    end 
   end
 
 ################
