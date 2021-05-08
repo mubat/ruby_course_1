@@ -108,13 +108,25 @@ class Train
   protected
 
   def validate
+    validate_number
+    validate_speed
+    validate_type
+  end
+
+  private
+
+  def validate_number
     raise "Number can't be empty" if @number.nil? || @number == ""
     raise "Number should be a string" unless @number.is_a? String
     raise "Number has wrong format" if @number !~ NUMBER_FORMAT
+  end
 
+  def validate_speed
     raise "Speed should be a number" unless @speed.is_a? Numeric
     raise "Speed should be more than 0 or equal" if @speed.negative?
+  end
 
+  def validate_type
     raise "Type can't be empty" if @type.nil? || @type == ""
     raise "Type should be a string" unless @type.is_a? String
   end
