@@ -1,12 +1,3 @@
-# делать следующее:
-  # - Создавать станции
-  # - Создавать поезда
-  # - Создавать маршруты и управлять станциями в нем (добавлять, удалять)
-  # - Назначать маршрут поезду
-  # - Добавлять вагоны к поезду
-  # - Отцеплять вагоны от поезда
-  # - Перемещать поезд по маршруту вперед и назад
-  # - Просматривать список станций и список поездов на станции
 require_relative 'station'
 require_relative 'trains/passenger_train'
 require_relative 'trains/cargo_train'
@@ -14,6 +5,9 @@ require_relative 'carriages/passenger_carriage'
 require_relative 'carriages/cargo_carriage'
 require_relative 'route'
 
+## 
+# Has all actions that user can execute. 
+# Can print main menu. User should choose one of them. To exit - print some bullshit
 class Controller
   
   def initialize

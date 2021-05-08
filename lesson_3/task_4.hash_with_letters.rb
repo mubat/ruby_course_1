@@ -1,4 +1,4 @@
-# Заполнить хеш гласными буквами, где значением будет являтся порядковый номер буквы в алфавите (a - 1).
+# Create hash with letter and it position number
 
 hash_entity = {}
 

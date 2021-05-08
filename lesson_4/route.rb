@@ -1,11 +1,13 @@
-# Класс Route (Маршрут):
-# Имеет начальную и конечную станцию, а также список промежуточных станций. Начальная и конечная станции указываютсся при создании маршрута, а промежуточные могут добавляться между ними.
-# Может добавлять промежуточную станцию в список
-# Может удалять промежуточную станцию из списка
-# Может выводить список всех станций по-порядку от начальной до конечной
 require_relative '../lesson_7/validate'
 require_relative 'station'
 
+##
+# Describe Route information and actions.
+# 
+# Stores a list of stations that train should visit
+# Can add/remove station from the list (but not first and last), print a list of registered stations
+# 
+# 
 class Route
   attr_reader :way_stations
 

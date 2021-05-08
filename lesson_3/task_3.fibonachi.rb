@@ -1,4 +1,4 @@
-### Заполнить массив числами фибоначчи до 100
+### Create array of Fibbonachi numbers
 
 fibbonachi = Array.new(100)
 
