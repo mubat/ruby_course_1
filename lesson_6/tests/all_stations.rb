@@ -21,7 +21,7 @@ count_of_station_before = station2.class.all.length
 # rubocop:disable Lint/UselessAssignment
 station3 = Station.new("station3")
 # rubocop:enable Lint/UselessAssignment
-if station2.class.all.length === 3 && count_of_station_before === 2
+if station2.class.all.length == 3 && count_of_station_before == 2
   puts "Station class stores all created objects correctly"
 else
   puts "Error. Station class count is wrong"

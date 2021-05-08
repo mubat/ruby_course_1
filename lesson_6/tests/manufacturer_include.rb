@@ -17,8 +17,10 @@ end
 
 cargo_train = CargoTrain.new("1")
 cargo_train.manufacturerName = "test_manufacturer"
+# rubocop: disable Style/CaseEquality
 if cargo_train.manufacturerName === "test_manufacturer"
   puts "Instance of CargoTrain can set and get manufacturer name"
 else
   puts "Error. Instance of CargoTrain doesn't can set and get manufacturer name"
 end
+# rubocop: enable Style/CaseEquality
