@@ -186,7 +186,7 @@ class Controller
     end
     puts "В каком направлении отправить? 1 - в обратном направлении, 2 - в попутном направлении"
     choise = gets.chomp.to_i
-    unless choise == 1 || choise == 2
+    unless [1, 2].include?(choise)
       puts "Некорректный выбор"
       return
     end
@@ -285,6 +285,6 @@ class Controller
   def ask_confirm(message)
     puts "#{message} y/д/+ - да"
     answer = gets.chomp.downcase
-    answer == "y" || answer == "д" || answer == "+"
+    ["y", "д", "+"].include?(answer)
   end
 end
