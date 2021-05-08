@@ -23,7 +23,6 @@ module Validate
 
     protected
 
-    def validate
-    end
+    def validate; end
   end
 end
