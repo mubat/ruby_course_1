@@ -22,7 +22,7 @@ module InstanceCounter
   ##
   # module with need options and methods for target instance
   module InstanceModule
-    def register_instance(instance)
+    def register_instance()
       self.class.instances_count += 1
     end
   end
