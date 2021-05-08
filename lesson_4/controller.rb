@@ -204,11 +204,11 @@ class Controller
 
   def print_trains_at_station
     station = choose_element(@stations, "Выберите станцию из списка.")
-    unless (station)
+    unless station
       puts "Станция не выбрана"
       return
     end
-    if (station.trains.length.zero?)
+    if station.trains.length.zero?
       puts "На станции нет поездов"
       return
     end
@@ -218,17 +218,17 @@ class Controller
 
   def take_place_at_carriage
     train = choose_element(@trains, "Выберите поезд из списка.")
-    unless (train)
+    unless train
       puts "Поезд не выбран"
       return
     end
-    if (train.carriages.length.zero?)
+    if train.carriages.length.zero?
       puts "У поезда нет вагонов"
       return
     end
 
     carriage = choose_element(train.carriages, "Выберите вагон.")
-    unless (train)
+    unless train
       puts "Вагон не выбран"
       return
     end

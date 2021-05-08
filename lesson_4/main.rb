@@ -10,7 +10,7 @@ loop do
   controller.print_menu
 
     choise = gets.chomp.to_i
-    break unless (controller.has_action?(choise))
+    break unless controller.has_action?(choise)
 
     controller.call(choise)
 
