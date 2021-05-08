@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ### Right triangle.
 
 puts "Введите длины сторон треугольника, каждый на новой строке:"

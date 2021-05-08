@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require_relative "../../lesson_4/trains/cargo_train"
 require_relative "../../lesson_4/trains/passenger_train"
 

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ### Create and array with numbers with step by 5
 result_array = []
 (10..100).each {|i| result_array.push(i) if i % 5 == 0 }

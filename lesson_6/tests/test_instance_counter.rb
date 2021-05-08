@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require_relative "../../lesson_4/station"
 # require_relative '../instance_counter'
 

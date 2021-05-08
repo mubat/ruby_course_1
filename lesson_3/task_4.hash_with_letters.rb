@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Create hash with letter and it position number
 
 hash_entity = {}

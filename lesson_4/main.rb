@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Start point of the program
 require_relative "controller"
 

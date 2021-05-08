@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require_relative "../lesson_6/instance_counter"
 require_relative "../lesson_7/validate"
 

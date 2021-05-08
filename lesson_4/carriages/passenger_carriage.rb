@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class PassengerCarriage < Carriage
   attr_reader :available_seats
 

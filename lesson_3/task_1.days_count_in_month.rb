@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ### Create hash with amount of the days in the month. Print month with days = 30
 require "date"
 

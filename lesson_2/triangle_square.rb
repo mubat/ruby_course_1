@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ### Triangle square
 
 puts "Введите значение основания: "

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ### Create array of Fibbonachi numbers
 
 fibbonachi = Array.new(100)
