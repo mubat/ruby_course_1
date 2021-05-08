@@ -11,4 +11,4 @@ counter = 1
   counter += 1
 end
 
-hash_entity.each { |k, v| puts k + " " + v.to_s }
+hash_entity.each { |k, v| puts "#{k} #{v}" }

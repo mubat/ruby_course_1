@@ -31,5 +31,5 @@ if Station.instances_count == 2
   puts "Class Station returns correct amount of created instances"
 else
   puts "Error. Class Station doesn't returns correct amount of created instances"
-  puts "ER - 2; AR - " + Station.instances.to_s
+  puts "ER - 2; AR - #{Station.instances}"
 end
