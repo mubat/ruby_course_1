@@ -43,7 +43,7 @@ class Route
   end
 
   def to_s
-    "#{self.start_station.name} - #{self.end_station.name}"
+    "#{start_station.name} - #{end_station.name}"
   end
 
   protected

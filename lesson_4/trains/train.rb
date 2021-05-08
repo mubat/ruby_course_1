@@ -38,7 +38,7 @@ class Train
   end
 
   def add_carriage(carriage)
-    return if carriage.type != self.type
+    return if carriage.type != type
     @carriages.push(carriage) if @speed.zero? && @carriages.index(carriage).nil?
   end
 
