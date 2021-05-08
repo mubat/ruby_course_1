@@ -11,7 +11,6 @@ require_relative "route"
 # Has all actions that user can execute.
 # Can print main menu. User should choose one of them. To exit - print some bullshit
 class Controller
-
   def initialize
     @stations = []
     @trains = []
@@ -284,5 +283,4 @@ class Controller
     answer = gets.chomp.downcase
     return answer == "y" || answer == "д" || answer == "+"
   end
-
 end
