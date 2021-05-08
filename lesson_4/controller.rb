@@ -62,6 +62,7 @@ class Controller
     print_elements(@stations, "Список зарегистрированных станций")
 
     return unless ask_confirm("Желаете увидеть поезда на станции?")
+
     station_to_show = choose_element(@stations)
     puts "На данный момент на станции зарегистрированны следующие поезда:"
     print_elements(station_to_show.trains_on_station_by_type("пассажирский"), "Пассажирские поезда")
@@ -107,8 +108,10 @@ class Controller
     puts "Добавление нового маршрута."
     station_start = choose_element(@stations, "Выберите стартовую станцию из списка")
     return if station_start.nil?
+
     station_end = choose_element(@stations, "Выберите конечную станцию из списка", [station_start])
     return if station_end.nil?
+
     @routes.push(Route.new(station_start, station_end))
   end
 
@@ -173,7 +176,6 @@ class Controller
 
     carriage_to_unhook = choose_element(train.carriages, "Какой вагон отцепить?")
     train.remove_carriage(carriage_to_unhook)
-
   end
 
   def send_train
@@ -199,6 +201,7 @@ class Controller
   def print_carriages_at_train
     train = choose_element(@trains, "Выберите поезд из списка.")
     return unless train
+
     train.apply { |i, carriage| puts "\t\t#{i}. #{carriage} " }
   end
 

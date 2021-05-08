@@ -11,6 +11,7 @@ require_relative "../lesson_7/validate"
 #
 class Station
   attr_reader :name, :trains
+
   @@all_stations = []
 
   include InstanceCounter
@@ -61,6 +62,7 @@ class Station
   def validate
     raise "Station should has name" if @name.nil? || @name == ""
     raise "Station should be a string" unless @name.is_a? String
+
     @trains.each do |train|
       raise "Station should contain only Train objects as trains" unless train.is_a? Train
     end

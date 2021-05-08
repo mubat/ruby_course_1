@@ -24,7 +24,6 @@ module Validate
     protected
 
     def validate
-
     end
   end
 end

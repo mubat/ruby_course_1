@@ -10,5 +10,4 @@ module Manufacturer
   def manufacturer_name
     @manufacturer_name
   end
-
 end

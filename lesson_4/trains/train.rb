@@ -39,11 +39,13 @@ class Train
 
   def add_carriage(carriage)
     return if carriage.type != type
+
     @carriages.push(carriage) if @speed.zero? && @carriages.index(carriage).nil?
   end
 
   def remove_carriage(carriage)
     return if @carriages.length.zero?
+
     @carriages.delete(carriage) if @speed.zero? && !@carriages.index(carriage).nil?
   end
 

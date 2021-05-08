@@ -17,6 +17,7 @@ class PassengerCarriage < Carriage
   # decrease amount of available seats and return action result in bool
   def take_seat
     return false if @available_seats <= 0
+
     @available_seats -= 1
     true
   end

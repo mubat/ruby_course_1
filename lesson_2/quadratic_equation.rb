@@ -11,6 +11,7 @@ def fill_value(value_name)
   end
   value
 end
+
 # rubocop: disable Naming/MethodParameterName
 def process_discriminant(b, a, c)
   b * b - 4 * a * c
