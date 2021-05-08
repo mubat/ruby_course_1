@@ -19,9 +19,9 @@ def process_result(a, b, discriminant, is_add_radical = true)
   (-b + (is_add_radical ? 1 : -1) * Math.sqrt(discriminant)) / (2.0 * a)
 end
 
-a = fill_value('a')
-b = fill_value('b')
-c = fill_value('c')
+a = fill_value("a")
+b = fill_value("b")
+c = fill_value("c")
 
 discriminant = process_discriminant(b, a, c)
 if discriminant < 0

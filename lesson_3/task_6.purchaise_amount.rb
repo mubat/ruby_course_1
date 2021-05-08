@@ -7,17 +7,17 @@ loop do
   print "Введите название товара: "
   product_name = gets.chomp
 
-  if product_name.downcase == 'стоп'
+  if product_name.downcase == "стоп"
     break
   end
 
   basket[product_name] = {}
   print "Введите цену: "
-  basket[product_name]['product_price'] = gets.chomp.to_f.abs
+  basket[product_name]["product_price"] = gets.chomp.to_f.abs
   print "Введите количество: "
-  basket[product_name]['product_count'] = gets.chomp.to_i.abs
+  basket[product_name]["product_count"] = gets.chomp.to_i.abs
 
-  total_amount += basket[product_name]['product_price'] * basket[product_name]['product_count']
+  total_amount += basket[product_name]["product_price"] * basket[product_name]["product_count"]
 end
 
 

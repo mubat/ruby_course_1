@@ -6,7 +6,7 @@ class PassengerCarriage < Carriage
       raise ArgumentError("seat_numbers can't be equal or less than 0")
     end
 
-    @type = 'пассажирский'
+    @type = "пассажирский"
     @available_seats = @seat_numbers = seat_numbers
   end
 

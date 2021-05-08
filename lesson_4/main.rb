@@ -1,5 +1,5 @@
 # Start point of the program
-require_relative 'controller'
+require_relative "controller"
 
 puts "Чтобы выйти из приложения, в меню введите абракадабру."
 

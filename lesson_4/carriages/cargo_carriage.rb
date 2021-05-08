@@ -2,7 +2,7 @@ class CargoCarriage < Carriage
 	attr_reader :taken_volume
 
   def initialize(volume)
-    @type = 'грузовой'
+    @type = "грузовой"
     @volume = volume
     @taken_volume = 0
   end

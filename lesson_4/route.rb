@@ -1,5 +1,5 @@
-require_relative '../lesson_7/validate'
-require_relative 'station'
+require_relative "../lesson_7/validate"
+require_relative "station"
 
 ##
 # Describe Route information and actions.

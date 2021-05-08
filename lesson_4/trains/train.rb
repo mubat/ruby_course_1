@@ -1,6 +1,6 @@
-require_relative '../carriages/carriage.rb'
-require_relative '../../lesson_6/manufacturer'
-require_relative '../../lesson_7/validate'
+require_relative "../carriages/carriage.rb"
+require_relative "../../lesson_6/manufacturer"
+require_relative "../../lesson_7/validate"
 
 ##
 # Describes general actions and information about trains
@@ -112,14 +112,14 @@ class Train
   protected
 
   def validate
-    raise "Number can't be empty" if @number.nil? || @number == ''
+    raise "Number can't be empty" if @number.nil? || @number == ""
     raise "Number should be a string" if !@number.is_a? String
     raise "Number has wrong format" if @number !~ NUMBER_FORMAT
 
     raise "Speed should be a number" if !@speed.is_a? Numeric
     raise "Speed should be more than 0 or equal" if @speed < 0
 
-    raise "Type can't be empty" if @type.nil? || @type == ''
+    raise "Type can't be empty" if @type.nil? || @type == ""
     raise "Type should be a string" if !@type.is_a? String
   end
 end

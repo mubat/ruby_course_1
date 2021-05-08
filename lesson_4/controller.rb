@@ -1,9 +1,9 @@
-require_relative 'station'
-require_relative 'trains/passenger_train'
-require_relative 'trains/cargo_train'
-require_relative 'carriages/passenger_carriage'
-require_relative 'carriages/cargo_carriage'
-require_relative 'route'
+require_relative "station"
+require_relative "trains/passenger_train"
+require_relative "trains/cargo_train"
+require_relative "carriages/passenger_carriage"
+require_relative "carriages/cargo_carriage"
+require_relative "route"
 
 ##
 # Has all actions that user can execute.
@@ -15,19 +15,19 @@ class Controller
     @trains = []
     @routes = []
     @actions = [
-      {'label' => "Добавить станцию", 'action' => :add_station},
-      {'label' => "Список всех станций", 'action' => :print_stations},
-      {'label' => "Добавить поезд", 'action' => :add_train},
-      {'label' => "Список поездов", 'action' => :print_trains},
-      {'label' => "Отправить поезд", 'action' => :send_train},
-      {'label' => "Добавить маршрут", 'action' => :add_route},
-      {'label' => "Cписок маршрутов", 'action' => :print_routes},
-      {'label' => "Назначить маршрут поезду", 'action' => :register_router_for_train},
-      {'label' => "Добавить вагон поезду", 'action' => :hook_carriage_to_train},
-      {'label' => "Отцепить 1 вагон от поезда", 'action' => :unhook_carriage},
-      {'label' => "Вывести список вагонов у поезда", 'action' => :print_carriages_at_train},
-      {'label' => "Вывести список поездов на станции", 'action' => :print_trains_at_station},
-      {'label' => "Занять место в вагоне", 'action' => :take_place_at_carriage},
+      {"label" => "Добавить станцию", "action" => :add_station},
+      {"label" => "Список всех станций", "action" => :print_stations},
+      {"label" => "Добавить поезд", "action" => :add_train},
+      {"label" => "Список поездов", "action" => :print_trains},
+      {"label" => "Отправить поезд", "action" => :send_train},
+      {"label" => "Добавить маршрут", "action" => :add_route},
+      {"label" => "Cписок маршрутов", "action" => :print_routes},
+      {"label" => "Назначить маршрут поезду", "action" => :register_router_for_train},
+      {"label" => "Добавить вагон поезду", "action" => :hook_carriage_to_train},
+      {"label" => "Отцепить 1 вагон от поезда", "action" => :unhook_carriage},
+      {"label" => "Вывести список вагонов у поезда", "action" => :print_carriages_at_train},
+      {"label" => "Вывести список поездов на станции", "action" => :print_trains_at_station},
+      {"label" => "Занять место в вагоне", "action" => :take_place_at_carriage},
     ]
   end
 
@@ -45,7 +45,7 @@ class Controller
   end
 
   def call(index)
-    method(@actions[index-1]['action']).call
+    method(@actions[index-1]["action"]).call
   end
 
   def add_station
@@ -62,9 +62,9 @@ class Controller
 
     return unless ask_confirm("Желаете увидеть поезда на станции?")
     station_to_show = choose_element(@stations)
-    puts 'На данный момент на станции зарегистрированны следующие поезда:'
-    print_elements(station_to_show.trains_on_station_by_type('пассажирский'), "Пассажирские поезда")
-    print_elements(station_to_show.trains_on_station_by_type('грузовой'), "Грузовые поезда")
+    puts "На данный момент на станции зарегистрированны следующие поезда:"
+    print_elements(station_to_show.trains_on_station_by_type("пассажирский"), "Пассажирские поезда")
+    print_elements(station_to_show.trains_on_station_by_type("грузовой"), "Грузовые поезда")
   end
 
   def add_train
@@ -87,7 +87,7 @@ class Controller
     rescue StandardError => e
       puts "Возникла ошибка при создании записи. Причина: #{e.message}"
       printf "Желаете повторить? (y - да): "
-      retry if gets.chomp == 'y'
+      retry if gets.chomp == "y"
       return
     end
     @trains.push(train)
@@ -157,7 +157,7 @@ class Controller
     end
     puts train.carriages.inspect
 
-    if train.type == 'грузовой'
+    if train.type == "грузовой"
       puts "\tВведите общий объём вагона: "
       train.add_carriage(CargoCarriage.new(gets.chomp.to_i))
     else
@@ -281,7 +281,7 @@ class Controller
   def ask_confirm(message)
     puts "#{message} y/д/+ - да"
     answer = gets.chomp.downcase
-    return answer == 'y' || answer == 'д' || answer == '+'
+    return answer == "y" || answer == "д" || answer == "+"
   end
 
 end

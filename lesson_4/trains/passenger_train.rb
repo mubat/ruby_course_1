@@ -1,9 +1,9 @@
-require_relative 'train'
+require_relative "train"
 
 class PassengerTrain < Train
 
   def initialize(number)
-    super number, 'пассажирский'
+    super number, "пассажирский"
   end
 
 end

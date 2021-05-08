@@ -1,5 +1,5 @@
-require_relative '../lesson_6/instance_counter'
-require_relative '../lesson_7/validate'
+require_relative "../lesson_6/instance_counter"
+require_relative "../lesson_7/validate"
 
 ##
 # Describe Station activity and it options.
@@ -61,7 +61,7 @@ class Station
   protected
 
   def validate
-    raise "Station should has name" if @name.nil? || @name == ''
+    raise "Station should has name" if @name.nil? || @name == ""
     raise "Station should be a string" if !@name.is_a? String
     @trains.each do |train|
       raise "Station should contain only Train objects as trains" if !train.is_a? Train

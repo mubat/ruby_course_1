@@ -1,7 +1,7 @@
-require_relative '../../lesson_4/station'
+require_relative "../../lesson_4/station"
 
-station1 = Station.new('station1')
-station2 = Station.new('station2')
+station1 = Station.new("station1")
+station2 = Station.new("station2")
 
 if station1.instance_of?(Station) && station2.instance_of?(Station)
   puts "Objects are created succesfully"
@@ -16,7 +16,7 @@ else
 end
 
 count_of_station_before = station2.class.all.length
-station3 = Station.new('station3')
+station3 = Station.new("station3")
 if station2.class.all.length === 3 && count_of_station_before === 2
   puts "Station class stores all created objects correctly"
 else

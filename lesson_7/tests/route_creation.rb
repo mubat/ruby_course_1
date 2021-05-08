@@ -1,21 +1,21 @@
-require_relative '../../lesson_4/route'
-require_relative '../../lesson_4/trains/cargo_train'
+require_relative "../../lesson_4/route"
+require_relative "../../lesson_4/trains/cargo_train"
 
-if Route.method_defined?('validate')
+if Route.method_defined?("validate")
   puts "Class Route has method `validate`"
 else
   puts "Error. Class CargoRoute hasn't method `validate`"
 end
 
-if Route.method_defined?('valid?')
+if Route.method_defined?("valid?")
   puts "Class Route has method `valid?`"
 else
   puts "Error. Class CargoRoute hasn't method `valid?`"
 end
 
-station_start = Station.new('123')
-station_end = Station.new('123')
-train1 = CargoTrain.new('113')
+station_start = Station.new("123")
+station_end = Station.new("123")
+train1 = CargoTrain.new("113")
 
 begin
   Route.new(station_start, nil)
@@ -61,7 +61,7 @@ else
   puts "Error. Created Route with correct values returns wrong valid status. [ER] true [AR] false"
 end
 
-station_middle = Station.new('Middle Station')
+station_middle = Station.new("Middle Station")
 route.add_way_station(station_middle)
 if route.valid?
   puts "Route with more than 2 stations validates successfully"

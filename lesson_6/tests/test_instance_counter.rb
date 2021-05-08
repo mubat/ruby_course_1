@@ -1,8 +1,8 @@
-require_relative '../../lesson_4/station'
+require_relative "../../lesson_4/station"
 # require_relative '../instance_counter'
 
-station1 = Station.new('station1')
-station2 = Station.new('station2')
+station1 = Station.new("station1")
+station2 = Station.new("station2")
 
 if Station.ancestors.include? InstanceCounter
   puts "Class Station includes `InstanceCounter` module"
@@ -17,7 +17,7 @@ else
   puts "Error. Class Station doesn't include `instances` method from module"
 end
 
-if Station.instance_variable_defined? '@instances_count'
+if Station.instance_variable_defined? "@instances_count"
   puts "Class Station includes `instances_count` class variable from module"
 else
   puts "Error. Class Station doesn't include `instances_count` class variable from module"

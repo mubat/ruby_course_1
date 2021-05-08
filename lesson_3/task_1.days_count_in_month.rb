@@ -1,5 +1,5 @@
 ### Create hash with amount of the days in the month. Print month with days = 30
-require 'date'
+require "date"
 
 months = {}
 
@@ -8,5 +8,5 @@ months = {}
   months[date.strftime("%B")] = date.day
 end
 
-puts 'Months with days = 30:'
+puts "Months with days = 30:"
 months.each { |month, days| puts month if days == 30 }
