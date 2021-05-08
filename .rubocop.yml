@@ -1,0 +1,10 @@
+AllCops:
+  RubyInterpreters:
+    - ruby
+  Exclude:
+    - '.git/**/*'
+  TargetRubyVersion: 2.7.0
+  
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
