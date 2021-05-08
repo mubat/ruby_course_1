@@ -28,7 +28,7 @@ class Controller
       { "label" => "Отцепить 1 вагон от поезда", "action" => :unhook_carriage },
       { "label" => "Вывести список вагонов у поезда", "action" => :print_carriages_at_train },
       { "label" => "Вывести список поездов на станции", "action" => :print_trains_at_station },
-      { "label" => "Занять место в вагоне", "action" => :take_place_at_carriage },
+      { "label" => "Занять место в вагоне", "action" => :take_place_at_carriage }
     ]
   end
 
