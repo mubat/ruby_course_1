@@ -247,11 +247,12 @@ class Controller
       printf "\t\t"
       puts(carriage.take_volume(gets.chomp.to_i) ? "Успешно" : "не удалось застолбить место")
     end
-    if carriage.type == "пассажирский"
-      puts "\tОставшееся свобоное место: #{carriage.available_seats}."
-      printf "\t\t"
-      puts(carriage.take_seat ? "Место записано за вами" : "Нет свободных мест")
-    end
+
+    return unless carriage.type == "пассажирский"
+
+    puts "\tОставшееся свобоное место: #{carriage.available_seats}."
+    printf "\t\t"
+    puts(carriage.take_seat ? "Место записано за вами" : "Нет свободных мест")
   end
 
   ################
