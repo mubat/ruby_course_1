@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 module Manufacturer
-  def manufacturerName=(name)
-    @manufacturerName = name
+  def manufacturer_name=(name)
+    @manufacturer_name = name
   end
 
-  def manufacturerName
-    @manufacturerName
+  def manufacturer_name
+    @manufacturer_name
   end
 
 end

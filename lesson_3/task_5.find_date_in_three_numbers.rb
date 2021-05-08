@@ -2,7 +2,7 @@
 
 ### Get serial number of the date by the date
 
-def is_leap?(year)
+def leap?(year)
   year % 4 == 0 && year % 100 != 0 && year % 400 == 0
 end
 
@@ -18,7 +18,7 @@ days_in_year = day
 
 month.times do |current_month|
   days_in_year += days_in_month[current_month]
-  if month == 2 && is_leap(year)
+  if month == 2 && leap?(year)
     days_in_year += 1
   end
 end

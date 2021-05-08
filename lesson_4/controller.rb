@@ -42,7 +42,7 @@ class Controller
     end
   end
 
-  def has_action?(index)
+  def action?(index)
     !@actions[index-1].nil?
   end
 
