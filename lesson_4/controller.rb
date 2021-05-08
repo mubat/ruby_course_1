@@ -193,13 +193,13 @@ class Controller
       puts "Поезд не уехал. Достигнут конец маршрута"
       return
     end
-    puts "Поезд отправлен на станцию #{next_station.to_s}."
+    puts "Поезд отправлен на станцию #{next_station}."
   end
 
   def print_carriages_at_train
     train = choose_element(@trains, "Выберите поезд из списка.")
     return unless train
-    train.apply { |i, carriage| puts "\t\t#{i}. #{carriage.to_s} " }
+    train.apply { |i, carriage| puts "\t\t#{i}. #{carriage} " }
   end
 
   def print_trains_at_station
@@ -213,7 +213,7 @@ class Controller
       return
     end
 
-    station.apply { |i, train| puts "\t\t#{i}. #{train.to_s}" }
+    station.apply { |i, train| puts "\t\t#{i}. #{train}" }
   end
 
   def take_place_at_carriage
@@ -261,7 +261,7 @@ class Controller
     end
 
     i = 0
-    elements_list.each { |object| i += 1; puts "\t#{i}. #{object.to_s}" }
+    elements_list.each { |object| i += 1; puts "\t#{i}. #{object}" }
   end
 
   def choose_element(elements_list, text = nil, except_list = [])
