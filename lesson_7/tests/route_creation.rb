@@ -52,8 +52,6 @@ rescue StandardError => e
   puts "Route without start station doesn't create"
 end
 
-
-
 route = Route.new(station_start, station_end)
 if route.valid?
   puts "Created Route with correct values validates successfully"

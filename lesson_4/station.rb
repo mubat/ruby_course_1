@@ -14,7 +14,6 @@ class Station
   include InstanceCounter
   include Validate
 
-
   def initialize(name)
     @name = name
     @trains = []

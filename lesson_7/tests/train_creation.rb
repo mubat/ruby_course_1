@@ -65,14 +65,12 @@ else
   puts "Error. Train with correct number should be valid. [ER] true [AR] false"
 end
 
-
 train_check_number_format.number = "f-2"
 if !train_check_number_format.valid?
   puts "Train with incorrect number not valid"
 else
   puts "Error. Train with incorrect number returns wrong valid status. [ER] false [AR] true"
 end
-
 
 train_check_number_format.number = "fedЫЯ"
 if train_check_number_format.valid?

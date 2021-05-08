@@ -119,7 +119,6 @@ class Controller
     print_elements(@routes, "Список зарегистрированных маршрутов в системе")
   end
 
-
   def register_router_for_train
     puts "Выберите поезд из списка:"
     print_trains

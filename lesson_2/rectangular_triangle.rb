@@ -10,7 +10,6 @@ if !side1.positive? || !side2.positive? || !side3.positive?
   exit
 end
 
-
 if side1 == side2 && side2 == side3
   puts "Треугольник равнобедренный и равносторонний."
   exit

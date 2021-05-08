@@ -37,9 +37,6 @@ rescue StandardError => e
   puts "Error. Station with correct name should be created. Error: #{e.message}"
 end
 
-
-
-
 station = Station.new("station1 station")
 if station.valid?
   puts "Created Station with correct values validates successfully"
@@ -55,7 +52,6 @@ if station2.valid?
 else
   puts "Error. Station with added Train shouldn't has errors"
 end
-
 
 station2 = Station.new("station2 station")
 station2.take_train("123 train")
