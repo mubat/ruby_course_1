@@ -31,6 +31,6 @@ class PassengerCarriage < Carriage
   end
 
   def to_s
-    "#{carriage.type}. Свободных мест: #{carriage.available_seats}, занято мест: #{carriage.taken_seats}"
+    "#{@type}. Свободных мест: #{@available_seats}, занято мест: #{@taken_seats}"
   end
 end
