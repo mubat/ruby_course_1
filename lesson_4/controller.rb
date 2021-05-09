@@ -188,8 +188,6 @@ class Controller
   end
 
   def choose_element(elements_list, text = nil, except_list = [])
-    puts("Список пуст") || return if elements_list.length.zero?
-
     print_elements(elements_list, text)
     loop do
       choise = gets.chomp.to_i
