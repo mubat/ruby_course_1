@@ -112,8 +112,7 @@ class Controller
   end
 
   def register_router_for_train
-    puts "Выберите поезд из списка:"
-    print_trains
+    print_trains "Выберите поезд из списка:"
     train = gets.chomp.to_i
     if train.positive? && train <= @trains.length
       train = @trains[train - 1]
@@ -137,8 +136,7 @@ class Controller
   end
 
   def hook_carriage_to_train
-    puts "Выберите поезд из списка:"
-    print_trains
+    print_trains "Выберите поезд из списка:"
     train = gets.chomp.to_i
     if train.positive? && train <= @trains.length
       train = @trains[train - 1]
