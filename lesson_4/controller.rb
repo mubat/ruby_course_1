@@ -144,7 +144,6 @@ class Controller
       puts "Недопустимое значение"
       return
     end
-    puts train.carriages.inspect
 
     if train.type == "грузовой"
       puts "\tВведите общий объём вагона: "
@@ -153,7 +152,6 @@ class Controller
       puts "\tВведите пассажировместимость вагона: "
       train.add_carriage(PassengerCarriage.new(gets.chomp.to_i))
     end
-    puts train.carriages.inspect
   end
 
   def unhook_carriage
