@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative "carriage"
+
 ##
 # Describes Carriage with type "passanger"
 # has additional required option "number of seats"
@@ -8,9 +10,9 @@ class PassengerCarriage < Carriage
   attr_reader :available_seats
 
   def initialize(seat_numbers)
+    super
     raise ArgumentError("seat_numbers can't be equal or less than 0") if seat_numbers <= 0
 
-    super
     @type = "пассажирский"
     @available_seats = @seat_numbers = seat_numbers
   end
