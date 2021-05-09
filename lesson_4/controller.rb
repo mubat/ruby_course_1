@@ -184,8 +184,7 @@ class Controller
     puts "#{text}:" unless text.nil?
     puts("\tСписок пуст.") || return if elements_list.length.zero? || elements_list.nil?
 
-    i = 0
-    elements_list.each { |object| i += 1; puts "\t#{i}. #{object}" }
+    elements_list.each_with_index { |object, i| puts "\t#{i + 1}. #{object}" }
   end
 
   def choose_element(elements_list, text = nil, except_list = [])
