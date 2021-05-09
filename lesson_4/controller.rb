@@ -11,42 +11,43 @@ require_relative "route"
 # Has all actions that user can execute.
 # Can print main menu. User should choose one of them. To exit - print some bullshit
 class Controller
+  ACTIONS = [
+    { "label" => "Добавить станцию", "action" => :add_station },
+    { "label" => "Список всех станций", "action" => :print_stations },
+    { "label" => "Добавить поезд", "action" => :add_train },
+    { "label" => "Список поездов", "action" => :print_trains },
+    { "label" => "Отправить поезд", "action" => :send_train },
+    { "label" => "Добавить маршрут", "action" => :add_route },
+    { "label" => "Cписок маршрутов", "action" => :print_routes },
+    { "label" => "Назначить маршрут поезду", "action" => :register_router_for_train },
+    { "label" => "Добавить вагон поезду", "action" => :hook_carriage_to_train },
+    { "label" => "Отцепить 1 вагон от поезда", "action" => :unhook_carriage },
+    { "label" => "Вывести список вагонов у поезда", "action" => :print_carriages_at_train },
+    { "label" => "Вывести список поездов на станции", "action" => :print_trains_at_station },
+    { "label" => "Занять место в вагоне", "action" => :take_place_at_carriage }
+  ].freeze
+
   def initialize
     @stations = []
     @trains = []
     @routes = []
-    @actions = [
-      { "label" => "Добавить станцию", "action" => :add_station },
-      { "label" => "Список всех станций", "action" => :print_stations },
-      { "label" => "Добавить поезд", "action" => :add_train },
-      { "label" => "Список поездов", "action" => :print_trains },
-      { "label" => "Отправить поезд", "action" => :send_train },
-      { "label" => "Добавить маршрут", "action" => :add_route },
-      { "label" => "Cписок маршрутов", "action" => :print_routes },
-      { "label" => "Назначить маршрут поезду", "action" => :register_router_for_train },
-      { "label" => "Добавить вагон поезду", "action" => :hook_carriage_to_train },
-      { "label" => "Отцепить 1 вагон от поезда", "action" => :unhook_carriage },
-      { "label" => "Вывести список вагонов у поезда", "action" => :print_carriages_at_train },
-      { "label" => "Вывести список поездов на станции", "action" => :print_trains_at_station },
-      { "label" => "Занять место в вагоне", "action" => :take_place_at_carriage }
-    ]
   end
 
   def print_menu
     puts "Меню:"
     i = 0
-    @actions.each do |menu_item|
+    ACTIONS.each do |menu_item|
       i += 1
       puts "\t#{i}. #{menu_item['label']}"
     end
   end
 
   def action?(index)
-    !@actions[index - 1].nil?
+    !ACTIONS[index - 1].nil?
   end
 
   def call(index)
-    method(@actions[index - 1]["action"]).call
+    method(ACTIONS[index - 1]["action"]).call
   end
 
   def add_station
