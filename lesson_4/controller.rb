@@ -123,21 +123,16 @@ class Controller
   end
 
   def hook_carriage_to_train
-    print_trains "Выберите поезд из списка:"
-    train = gets.chomp.to_i
-    unless train.positive? && train <= @trains.length
-      puts "Недопустимое значение"
-      return
-    end
-    train = @trains[train - 1]
+    train = choose_element(@trains, "Выберите поезд из списка:")
+    return unless train
 
     if train.type == "грузовой"
       puts "\tВведите общий объём вагона: "
       train.add_carriage(CargoCarriage.new(gets.chomp.to_i))
-    else
-      puts "\tВведите пассажировместимость вагона: "
-      train.add_carriage(PassengerCarriage.new(gets.chomp.to_i))
+      return
     end
+    puts "\tВведите пассажировместимость вагона: "
+    train.add_carriage(PassengerCarriage.new(gets.chomp.to_i))
   end
 
   def unhook_carriage
