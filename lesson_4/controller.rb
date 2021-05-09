@@ -56,10 +56,8 @@ class Controller
   end
 
   def print_stations
-    unless @stations.length
-      puts "Нет зарегистрированных станций."
-      return
-    end
+    puts("Нет зарегистрированных станций.") || return unless @stations.length
+
     print_elements(@stations, "Список зарегистрированных станций")
 
     return unless ask_confirm("Желаете увидеть поезда на станции?")
@@ -85,10 +83,7 @@ class Controller
   end
 
   def print_trains(message = nil)
-    unless @trains.length
-      puts "Нет зарегистрированных поездов."
-      return
-    end
+    puts "Нет зарегистрированных поездов." || return unless @trains.length
     print_elements(@trains, message || "Список зарегистрированных поездов в системе")
   end
 
@@ -104,10 +99,8 @@ class Controller
   end
 
   def print_routes
-    unless @routes.length
-      puts "Нет зарегистрированных маршрутов."
-      return
-    end
+    puts("Нет зарегистрированных маршрутов.") || return unless @routes.length
+
     print_elements(@routes, "Список зарегистрированных маршрутов в системе")
   end
 
@@ -155,11 +148,12 @@ class Controller
       puts "Некорректный выбор"
       return
     end
+
+    puts("Поезду не указан маршрут. Сначало выставите маршрут поезду") || return unless train.route?
     next_station = choise == 2 ? train.go_forward : train.go_reverse
-    if next_station.nil?
-      puts "Поезд не уехал. Достигнут конец маршрута"
-      return
-    end
+
+    puts("Поезд не уехал. Достигнут конец маршрута") || return if next_station.nil?
+
     puts "Поезд отправлен на станцию #{next_station}."
   end
 
@@ -172,14 +166,8 @@ class Controller
 
   def print_trains_at_station
     station = choose_element(@stations, "Выберите станцию из списка.")
-    unless station
-      puts "Станция не выбрана"
-      return
-    end
-    if station.trains.length.zero?
-      puts "На станции нет поездов"
-      return
-    end
+    puts("Станция не выбрана") || return unless station
+    puts("На станции нет поездов") || return if station.trains.length.zero?
 
     station.apply { |i, train| puts "\t\t#{i}. #{train}" }
   end
@@ -202,20 +190,14 @@ class Controller
 
   def print_elements(elements_list, text = nil)
     puts "#{text}:" unless text.nil?
-    if elements_list.length.zero? || elements_list.nil?
-      puts "\tСписок пуст."
-      return
-    end
+    puts("\tСписок пуст.") || return if elements_list.length.zero? || elements_list.nil?
 
     i = 0
     elements_list.each { |object| i += 1; puts "\t#{i}. #{object}" }
   end
 
   def choose_element(elements_list, text = nil, except_list = [])
-    if elements_list.length.zero?
-      puts "Список пуст"
-      return
-    end
+    puts("Список пуст") || return if elements_list.length.zero?
 
     print_elements(elements_list, text)
     loop do
@@ -238,10 +220,8 @@ class Controller
   # dont want to create split controller for each type. Just create separate actions
   def take_place_at_cargo_carriage
     puts "\tОставшееся свобоное место: #{carriage.available_volume}."
-    if carriage.available_volume <= 0
-      puts "Нет свободного пространства"
-      return
-    end
+    puts("Нет свободного пространства") || return if carriage.available_volume <= 0
+
     printf "\tСколько хотите занять? "
     puts carriage.take_volume(gets.chomp.to_i) ? "Успешно" : "не удалось застолбить место"
   end
