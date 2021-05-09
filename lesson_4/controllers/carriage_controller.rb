@@ -39,6 +39,7 @@ class CarriageController < Controller
   def print_carriages_at_train
     train = choose_element(@app.trains, "Выберите поезд из списка.")
     return unless train
+
     puts "Список вагонов поезда \##{train.number}:"
     train.apply { |i, carriage| puts "\t#{i + 1}. #{carriage} " }
   end
