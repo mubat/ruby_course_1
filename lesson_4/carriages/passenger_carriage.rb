@@ -10,7 +10,7 @@ class PassengerCarriage < Carriage
   attr_reader :available_seats
 
   def initialize(seat_numbers)
-    super
+    super()
     raise ArgumentError("seat_numbers can't be equal or less than 0") if seat_numbers <= 0
 
     @type = "пассажирский"
