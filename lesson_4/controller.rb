@@ -138,18 +138,10 @@ class Controller
 
   def send_train
     train = choose_element(@trains, "Выберите поезд")
-    unless train.route?
-      puts "Поезду не указан маршрут. Сначало выставите маршрут поезду"
-      return
-    end
-    puts "В каком направлении отправить? 1 - в обратном направлении, 2 - в попутном направлении"
-    choise = gets.chomp.to_i
-    unless [1, 2].include?(choise)
-      puts "Некорректный выбор"
-      return
-    end
 
     puts("Поезду не указан маршрут. Сначало выставите маршрут поезду") || return unless train.route?
+
+    choise = choose_element_idx(["в обратном направлении", "в попутном направлении"], "В каком направлении отправить?")
     next_station = choise == 2 ? train.go_forward : train.go_reverse
 
     puts("Поезд не уехал. Достигнут конец маршрута") || return if next_station.nil?
