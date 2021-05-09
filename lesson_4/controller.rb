@@ -211,6 +211,10 @@ class Controller
     end
   end
 
+  def choose_element_idx(elements_list, text = nil, except_list = [])
+    elements_list.index(choose_element(elements_list, text, except_list))
+  end
+
   def ask_confirm(message)
     puts "#{message} y/д/+ - да"
     answer = gets.chomp.downcase
