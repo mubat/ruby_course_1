@@ -113,7 +113,11 @@ class Controller
 
   def register_router_for_train
     train = choose_element(@trains, "Выберите поезд из списка:")
+    return unless train
+
     route = choose_element(@routes, "Выберите маршрут из списка:")
+    return unless route
+
     train.register_route(route)
     puts "Зарегистрирован маршрут #{route} для поезда \##{train.number}"
   end
