@@ -112,27 +112,10 @@ class Controller
   end
 
   def register_router_for_train
-    print_trains "Выберите поезд из списка:"
-    train = gets.chomp.to_i
-    if train.positive? && train <= @trains.length
-      train = @trains[train - 1]
-    else
-      puts "Недопустимое значение"
-      return
-    end
-
-    puts "Выберите маршрут из списка:"
-    print_routes
-    route = gets.chomp.to_i
-    if route.positive? && route <= @routes.length
-      route = @routes[route - 1]
-    else
-      puts "Недопустимое значение"
-      return
-    end
-
+    train = choose_element(@trains, "Выберите поезд из списка:")
+    route = choose_element(@routes, "Выберите маршрут из списка:")
     train.register_route(route)
-    puts "Зарегистрирован маршрут для поезда \##{train.number}"
+    puts "Зарегистрирован маршрут #{route} для поезда \##{train.number}"
   end
 
   def hook_carriage_to_train
@@ -230,7 +213,10 @@ class Controller
   end
 
   def choose_element(elements_list, text = nil, except_list = [])
-    return nil if elements_list.length.zero?
+    if elements_list.length.zero?
+      puts "Список пуст"
+      return
+    end
 
     print_elements(elements_list, text)
     loop do
