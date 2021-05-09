@@ -23,7 +23,7 @@ class Station
     @name = name
     @trains = []
     @@all_stations.push(self)
-    register_instance(self)
+    register_instance
     validate
   end
 
