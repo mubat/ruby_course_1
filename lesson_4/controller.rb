@@ -84,12 +84,12 @@ class Controller
     retry if ask_confirm("Желаете повторить?")
   end
 
-  def print_trains
+  def print_trains(message = nil)
     unless @trains.length
       puts "Нет зарегистрированных поездов."
       return
     end
-    print_elements(@trains, "Список зарегистрированных поездов в системе")
+    print_elements(@trains, message || "Список зарегистрированных поездов в системе")
   end
 
   def add_route
