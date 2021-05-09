@@ -138,12 +138,11 @@ class Controller
   def hook_carriage_to_train
     print_trains "Выберите поезд из списка:"
     train = gets.chomp.to_i
-    if train.positive? && train <= @trains.length
-      train = @trains[train - 1]
-    else
+    unless train.positive? && train <= @trains.length
       puts "Недопустимое значение"
       return
     end
+    train = @trains[train - 1]
 
     if train.type == "грузовой"
       puts "\tВведите общий объём вагона: "
