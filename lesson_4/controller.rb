@@ -70,31 +70,17 @@ class Controller
   end
 
   def add_train
-    puts "Добавление поезда."
+    train_number = prompt "\tВведите номер поезда: "
 
-    begin
-      printf "\tВведите номер поезда: "
-      train_number = gets.chomp
-
-      printf "\tКакого типа поезд? 1 - пассажирский, 2 - грузовой: "
-      train_type = gets.chomp.to_i
-      case train_type
-      when 1
-        train = PassengerTrain.new train_number
-      when 2
-        train = CargoTrain.new train_number
-      else
-        puts "Тип не поддерживается."
-        return
-      end
-    rescue StandardError => e
-      puts "Возникла ошибка при создании записи. Причина: #{e.message}"
-      printf "Желаете повторить? (y - да): "
-      retry if gets.chomp == "y"
-      return
+    case choose_element(%w[пассажирский грузовой], "Какого типа поезд?\t 1 - пассажирский, 2 - грузовой")
+    when "пассажирский"
+      register_train(PassengerTrain.new(train_number))
+    when "грузовой"
+      register_train(CargoTrain.new(train_number))
     end
-    @trains.push(train)
-    puts "Запись о поезде #{train} создана"
+  rescue StandardError => e
+    puts "Возникла ошибка при создании записи. Причина: #{e.message}"
+    retry if ask_confirm("Желаете повторить?")
   end
 
   def print_trains
@@ -282,5 +268,15 @@ class Controller
   def take_place_at_passanger_carriage
     puts "\tОставшееся свобоное место: #{carriage.available_seats}."
     puts carriage.take_seat ? " Место записано за вами" : " Нет свободных мест"
+  end
+
+  def register_train
+    @trains.push(train)
+    puts "Запись о поезде #{train} создана"
+  end
+
+  def prompt(*args)
+    print(*args)
+    gets.chomp
   end
 end
