@@ -1,25 +1,29 @@
-## Класс Station (Станция):
-# Имеет название, которое указывается при ее создании
-# Может принимать поезда (по одному за раз)
-# Может возвращать список всех поездов на станции, находящиеся в текущий момент
-# Может возвращать список поездов на станции по типу (см. ниже): кол-во грузовых, пассажирских
-# Может отправлять поезда (по одному за раз, при этом, поезд удаляется из списка поездов, находящихся на станции).
-require_relative '../lesson_6/instance_counter'
-require_relative '../lesson_7/validate'
+# frozen_string_literal: true
 
+require_relative "../lesson_6/instance_counter"
+require_relative "../lesson_7/validate"
+
+##
+# Describe Station activity and it options.
+#
+# Has name.
+# Can take trains, give a list of trains on it, send trains along the route
+#
 class Station
   attr_reader :name, :trains
+
+  # rubocop: disable Style/ClassVars
   @@all_stations = []
+  # rubocop: enable Style/ClassVars
 
   include InstanceCounter
   include Validate
-
 
   def initialize(name)
     @name = name
     @trains = []
     @@all_stations.push(self)
-    self.register_instance(self)
+    register_instance
     validate
   end
 
@@ -28,8 +32,7 @@ class Station
   end
 
   def trains_on_station_by_type(type)
-    trains_by_type = {}
-    @trains.filter {|train| train.type == type}
+    @trains.filter { |train| train.type == type }
   end
 
   def send_train(train)
@@ -45,11 +48,9 @@ class Station
   end
 
   def apply(&block)
-    if !block_given?
-      raise LocalJumpError("no block given")
-    end
+    raise LocalJumpError("no block given") unless block_given?
 
-    @trains.each_with_index do |train, i| 
+    @trains.each_with_index do |train, i|
       if block.arity == 2
         block.call(i, train)
       else
@@ -61,10 +62,11 @@ class Station
   protected
 
   def validate
-    raise "Station should has name" if @name.nil? || @name == ''
-    raise "Station should be a string" if !@name.is_a? String
+    raise "Station should has name" if @name.nil? || @name == ""
+    raise "Station should be a string" unless @name.is_a? String
+
     @trains.each do |train|
-      raise "Station should contain only Train objects as trains" if !train.is_a? Train
+      raise "Station should contain only Train objects as trains" unless train.is_a? Train
     end
   end
 end

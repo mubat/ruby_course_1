@@ -1,11 +1,15 @@
-# Класс Route (Маршрут):
-# Имеет начальную и конечную станцию, а также список промежуточных станций. Начальная и конечная станции указываютсся при создании маршрута, а промежуточные могут добавляться между ними.
-# Может добавлять промежуточную станцию в список
-# Может удалять промежуточную станцию из списка
-# Может выводить список всех станций по-порядку от начальной до конечной
-require_relative '../lesson_7/validate'
-require_relative 'station'
+# frozen_string_literal: true
 
+require_relative "../lesson_7/validate"
+require_relative "station"
+
+##
+# Describe Route information and actions.
+#
+# Stores a list of stations that train should visit
+# Can add/remove station from the list (but not first and last), print a list of registered stations
+#
+#
 class Route
   attr_reader :way_stations
 
@@ -21,9 +25,8 @@ class Route
   end
 
   def delete_way_station(station)
-    if @way_stations.find_index(station.name).nil?
-      return
-    elsif @way_stations.length <= 2 || @way_stations[0] == station || @way_stations.last == station
+    if @way_stations.find_index(station.name).nil? || @way_stations.length <= 2 ||
+       @way_stations[0] == station || @way_stations.last == station
       return
     end
 
@@ -35,17 +38,19 @@ class Route
   end
 
   def end_station
-    @way_stations.last    
+    @way_stations.last
   end
 
   def to_s
-    "#{self.start_station.name} - #{self.end_station.name}"
+    "#{start_station.name} - #{end_station.name}"
   end
 
   protected
 
   def validate
+    if (!@way_stations[0].is_a? Station) || (!@way_stations[@way_stations.length - 1].is_a? Station)
+      raise "Number should be a string"
+    end
     raise "Route should has start and end station" if @way_stations.nil? || @way_stations.length <= 1
-    raise "Number should be a string" if (!@way_stations[0].is_a? Station) || (!@way_stations[@way_stations.length-1].is_a? Station)
   end
 end

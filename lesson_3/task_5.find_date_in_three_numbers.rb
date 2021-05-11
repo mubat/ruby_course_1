@@ -1,7 +1,9 @@
-### Заданы три числа, которые обозначают число, месяц, год (запрашиваем у пользователя). Найти порядковый номер даты, начиная отсчет с начала года. Учесть, что год может быть високосным. (Запрещено использовать встроенные в ruby методы для этого вроде Date#yday или Date#leap?) Алгоритм опредления високосного года: www.adm.yar.ru
+# frozen_string_literal: true
 
-def is_leap?(year)
-  year % 4 == 0 && year % 100 != 0 && year % 400 == 0
+### Get serial number of the date by the date
+
+def leap?(year)
+  (year % 4).zero? && year % 100 != 0 && (year % 400).zero?
 end
 
 print "Введите год: "
@@ -16,9 +18,7 @@ days_in_year = day
 
 month.times do |current_month|
   days_in_year += days_in_month[current_month]
-  if month == 2 && is_leap(year)
-    days_in_year += 1
-  end
+  days_in_year += 1 if month == 2 && leap?(year)
 end
 
 puts "В #{year} насчитывается #{days_in_year} дней."

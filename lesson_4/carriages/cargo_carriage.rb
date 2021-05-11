@@ -1,21 +1,26 @@
+# frozen_string_literal: true
+
+##
+# Describes Carriage with type "cargo"
+# has additional required option "volume"
+# can take some volume and show available lost
 class CargoCarriage < Carriage
-	attr_reader :taken_volume
+  attr_reader :taken_volume
 
   def initialize(volume)
-    @type = 'грузовой'
+    super()
+    @type = "грузовой"
     @volume = volume
     @taken_volume = 0
   end
 
-  # take a part of cargo volume. 
+  # take a part of cargo volume.
   # @return [bool] operation result
   def take_volume(amount)
-    if self.available_volume < amount
-      return false
-    end
+    return false if available_volume < amount
 
     @taken_volume += amount
-    return true
+    true
   end
 
   # @return [Integer] left available volume
@@ -24,7 +29,6 @@ class CargoCarriage < Carriage
   end
 
   def to_s
-    "#{carriage.type}. Свободный объём: #{carriage.available_volume.to_s}, занятый объём: #{carriage.taken_volume.to_s}"
+    "#{@type}. Свободный объём: #{@available_volume}, занятый объём: #{@taken_volume}"
   end
-
 end

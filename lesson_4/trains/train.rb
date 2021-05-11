@@ -1,29 +1,26 @@
-### Класс Train (Поезд):
-## Имеет номер (произвольная строка) и тип (грузовой, пассажирский) и количество вагонов, эти данные указываются при создании экземпляра класса
-## Может набирать скорость
-## Может возвращать текущую скорость
-## Может тормозить (сбрасывать скорость до нуля)
-## Может возвращать количество вагонов
-## Может прицеплять/отцеплять вагоны (по одному вагону за операцию, метод просто увеличивает или уменьшает количество вагонов). Прицепка/отцепка вагонов может осуществляться только если поезд не движется.
-## Может принимать маршрут следования (объект класса Route). 
-# При назначении маршрута поезду, поезд автоматически помещается на первую станцию в маршруте.
-# Может перемещаться между станциями, указанными в маршруте. Перемещение возможно вперед и назад, но только на 1 станцию за раз.
-# Возвращать предыдущую станцию, текущую, следующую, на основе маршрута
+# frozen_string_literal: true
 
-require_relative '../carriages/carriage.rb'
-require_relative '../../lesson_6/manufacturer'
-require_relative '../../lesson_7/validate'
+require_relative "../carriages/carriage"
+require_relative "../../lesson_6/manufacturer"
+require_relative "../../lesson_7/validate"
 
+##
+# Describes general actions and information about trains
+#
+# Can encrease speed, stop, tell a current speed, amount of carriages, hitch/unhitch carriages,
+# moves between stations in the route, register route
 class Train
   attr_reader :speed, :carriages, :current_station, :type
-  attr_accessor :number 
+  attr_accessor :number
 
-  NUMBER_FORMAT = /^[а-я\w\d]{3}\-?[а-я\w\d]{2}$/i
+  NUMBER_FORMAT = /^[а-я\w\d]{3}-?[а-я\w\d]{2}$/i.freeze
 
   include Manufacturer
   include Validate
 
+  # rubocop: disable Style/ClassVars
   @@registered_trains = []
+  # rubocop: enable Style/ClassVars
 
   def initialize(number, type)
     @number = number
@@ -35,7 +32,7 @@ class Train
   end
 
   def speed_encrease(value = 10)
-    @speed = @speed + value
+    @speed += value
   end
 
   def stop
@@ -43,13 +40,15 @@ class Train
   end
 
   def add_carriage(carriage)
-    return if carriage.type != self.type
-    @carriages.push(carriage) if @speed == 0 && @carriages.index(carriage).nil?
+    return if carriage.type != type
+
+    @carriages.push(carriage) if @speed.zero? && @carriages.index(carriage).nil?
   end
 
   def remove_carriage(carriage)
-    return if @carriages.length == 0
-    @carriages.delete(carriage) if @speed == 0 && !@carriages.index(carriage).nil?
+    return if @carriages.length.zero?
+
+    @carriages.delete(carriage) if @speed.zero? && !@carriages.index(carriage).nil?
   end
 
   def register_route(route)
@@ -58,7 +57,6 @@ class Train
   end
 
   def go_forward
-    next_station = get_next_station
     return unless next_station
 
     @current_station.send_train(self)
@@ -66,8 +64,7 @@ class Train
   end
 
   def go_reverse
-    next_station = get_previous_station
-    return unless next_station
+    return unless previous_station
 
     @current_station.send_train(self)
     self.current_station = next_station
@@ -78,16 +75,12 @@ class Train
     @current_station.take_train(self)
   end
 
-  def get_next_station
-    if @current_station != @route.end_station
-      @route.way_stations[@route.way_stations.index(@current_station) + 1]
-    end
+  def next_station
+    @route.way_stations[@route.way_stations.index(@current_station) + 1] if @current_station != @route.end_station
   end
 
-  def get_previous_station
-    if @current_station != @route.start_station
-      @route.way_stations[@route.way_stations.index(@current_station) - 1]
-    end
+  def previous_station
+    @route.way_stations[@route.way_stations.index(@current_station) - 1] if @current_station != @route.start_station
   end
 
   def route?
@@ -95,19 +88,17 @@ class Train
   end
 
   def to_s
-    "Номер: \##{train.number}, тип: #{train.type}, кол-во вагонов:#{train.carriages.length}"
+    "Номер: \##{@number}, тип: #{@type}, кол-во вагонов:#{@carriages.length}"
   end
 
   def self.find(number)
-    @@registered_trains.find{|train| train.number == number}
+    @@registered_trains.find { |train| train.number == number }
   end
 
   def apply(&block)
-    if !block_given?
-      raise LocalJumpError("no block given")
-    end
+    raise LocalJumpError("no block given") unless block_given?
 
-    @carriages.each_with_index do |carriage, i| 
+    @carriages.each_with_index do |carriage, i|
       if block.arity == 2
         block.call(i, carriage)
       else
@@ -119,14 +110,26 @@ class Train
   protected
 
   def validate
-    raise "Number can't be empty" if @number.nil? || @number == ''
-    raise "Number should be a string" if !@number.is_a? String
+    validate_number
+    validate_speed
+    validate_type
+  end
+
+  private
+
+  def validate_number
+    raise "Number can't be empty" if @number.nil? || @number == ""
+    raise "Number should be a string" unless @number.is_a? String
     raise "Number has wrong format" if @number !~ NUMBER_FORMAT
+  end
 
-    raise "Speed should be a number" if !@speed.is_a? Numeric
-    raise "Speed should be more than 0 or equal" if @speed < 0
+  def validate_speed
+    raise "Speed should be a number" unless @speed.is_a? Numeric
+    raise "Speed should be more than 0 or equal" if @speed.negative?
+  end
 
-    raise "Type can't be empty" if @type.nil? || @type == ''
-    raise "Type should be a string" if !@type.is_a? String
+  def validate_type
+    raise "Type can't be empty" if @type.nil? || @type == ""
+    raise "Type should be a string" unless @type.is_a? String
   end
 end
