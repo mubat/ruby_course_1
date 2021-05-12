@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-require_relative 'errors/validation_error'
+
+require_relative "errors/validation_error"
 
 ##
 # add validation functionality to the class
@@ -8,7 +9,7 @@ module Validation
     init_class.extend ClassModule
     init_class.send :include, InstanceModule
   end
-  
+
   ##
   # includes all declarations for Class
   module ClassModule
