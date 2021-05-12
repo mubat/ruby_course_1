@@ -22,3 +22,16 @@ if foo.validate(:bar, :format, /^\d+$/)
 else
   puts "Validator 'format' returns correct result when format doesn't match "
 end
+
+if foo.validate(:bar, :presence)
+  puts "Validator 'presence' returns correct result for not empty value"
+else
+  puts "Error! validator 'presence' returns incorrect result for not empty value"
+end
+
+foo.bar = ""
+if foo.validate(:bar, :presence)
+  puts "Error! validator 'presence' returns incorrect result for empty value"
+else
+  puts "Validator 'presence' returns correct result for empty value"
+end

@@ -27,5 +27,13 @@ module Validation
     def format(attr, *args)
       args[0].match(instance_variable_get("@#{attr}".to_sym))
     end
+
+    ##
+    # validator. Check attribute value not nil and not empty
+    #
+    def presence(attr, *_args)
+      !instance_variable_get("@#{attr}".to_sym).nil? && !instance_variable_get("@#{attr}".to_sym).empty?
+    end
+
   end
 end
