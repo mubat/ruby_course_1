@@ -71,9 +71,13 @@ module Validation
 
     ##
     # validator. Check attribute value should by with requested type
-    #
-    def type(attr, *args)
-      instance_variable_get("@#{attr}".to_sym).instance_of? args[0] 
+    # rubocop: disable Naming/PredicateName - because proposed name is not suitable here
+    def has_type(attr, *args)
+      instance_variable_get("@#{attr}".to_sym).instance_of?(args[0])
+    end
+    # rubocop: enable Naming/PredicateName
+
+    private
     end
   end
 end

@@ -9,7 +9,7 @@ class Foo
 
   validate :bar, :format, /^\d+$/
   validate :bar, :presence
-  validate :baz, :type, String
+  validate :baz, :has_type, String
 
   def initialize
     # create object with valid values on start
@@ -58,7 +58,6 @@ rescue ValidationError
   puts "'validate!' works fine. Raise ValidationError"
 end
 
-
 foo = Foo.new
 foo.bar = nil
 if foo.valid?
@@ -78,16 +77,15 @@ end
 foo = Foo.new
 foo.baz = ""
 if foo.valid?
-  puts "Validator 'type' returns correct result"
+  puts "Validator 'has_type' returns correct result"
 else
-  puts "Error! validator 'type' returns incorrect result"
+  puts "Error! validator 'has_type' returns incorrect result"
 end
-
 
 foo = Foo.new
 foo.baz = 1
 if foo.valid?
-  puts "Error! validator 'type' returns incorrect result"
+  puts "Error! validator 'has_type' returns incorrect result"
 else
-  puts "Validator 'type' returns correct result"
+  puts "Validator 'has_type' returns correct result"
 end
