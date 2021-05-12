@@ -13,8 +13,8 @@ class Foo
 
   def initialize
     # create object with valid values on start
-    @bar = '1232345'
-    @baz = 'some string'
+    @bar = "1232345"
+    @baz = "some string"
   end
 end
 
@@ -51,9 +51,7 @@ foo = Foo.new
 foo.baz = nil
 begin
   result = foo.validate!
-  if result
-    puts "Error! 'validate!' doesn't work. [ER] Raise ValidationError [AR] #{result}"
-  end
+  puts "Error! 'validate!' doesn't work. [ER] Raise ValidationError [AR] #{result}" if result
 rescue ValidationError
   puts "'validate!' works fine. Raise ValidationError"
 end

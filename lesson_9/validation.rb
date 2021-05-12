@@ -35,10 +35,12 @@ module Validation
     ##
     # Allow to call some validator for attribute. May get additional parameters
     def validate!
-      self.class.validators.each do |args|
-        # puts "debug. Try execute #{args}"
-        res = send(args[1], args[0], *args[2])
-        raise ValidationError.new(args[0], instance_variable_get("@#{args[0]}".to_sym)) unless res
+      current_class = self.class
+      loop do
+        break if current_class.nil? || current_class.ancestors.index(Validation).nil?
+
+        execute_validators(current_class.validators)
+        current_class = current_class.superclass
       end
       true
     end
@@ -78,6 +80,12 @@ module Validation
     # rubocop: enable Naming/PredicateName
 
     private
+
+    def execute_validators(validators)
+      validators.each do |args|
+        res = send(args[1], args[0], *args[2])
+        raise ValidationError.new(args[0], instance_variable_get("@#{args[0]}".to_sym)) unless res
+      end
     end
   end
 end
