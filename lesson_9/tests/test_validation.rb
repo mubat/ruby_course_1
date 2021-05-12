@@ -2,6 +2,8 @@
 
 require_relative "../validation"
 
+##
+# Class for testing purposes
 class Foo
   include Validation
 
