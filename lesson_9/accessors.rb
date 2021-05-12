@@ -30,4 +30,20 @@ module Accessors
       end
     end
   end
+
+  ##
+  # declare all needed instance methods
+  module InstanceModule
+    def method_missing(method_name, *args, &block)
+      # check is requested method contains '_history' suffix
+      attr = method_name.match(/^([\w_]+)_history$/)
+      return instance_variable_get("@#{attr[1]}".to_s) unless attr.nil?
+
+      super
+    end
+
+    def respond_to_missing?(method_name, *args)
+      method_name.match(/^([\w_]+)_history$/) || super
+    end
+  end
 end
