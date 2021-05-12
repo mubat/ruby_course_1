@@ -43,13 +43,10 @@ module Validation
       true
     end
 
-    def valid? 
-      begin 
-        res = validate!
-        return res
-      rescue ValidationError
-        return false
-      end
+    def valid?
+      validate!
+    rescue ValidationError
+      false
     end
 
     protected
@@ -60,6 +57,7 @@ module Validation
     def format(attr, *args)
       value = instance_variable_get("@#{attr}".to_sym)
       return true unless value
+
       args[0].match?(value)
     end
 
