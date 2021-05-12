@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "../lesson_6/instance_counter"
-require_relative "../lesson_7/validate"
+require_relative "../lesson_9/validation"
 
 ##
 # Describe Station activity and it options.
@@ -10,21 +10,24 @@ require_relative "../lesson_7/validate"
 # Can take trains, give a list of trains on it, send trains along the route
 #
 class Station
+  include InstanceCounter
+  include Validation
+
   attr_reader :name, :trains
+
+  validate :name, :presence
+  validate :name, :has_type, String
+  validate :trains, :has_type, Array
 
   # rubocop: disable Style/ClassVars
   @@all_stations = []
   # rubocop: enable Style/ClassVars
-
-  include InstanceCounter
-  include Validate
 
   def initialize(name)
     @name = name
     @trains = []
     @@all_stations.push(self)
     register_instance
-    validate
   end
 
   def take_train(train)
@@ -59,14 +62,12 @@ class Station
     end
   end
 
-  protected
+  # def validate
+  #   raise "Station should has name" if @name.nil? || @name == ""
+  #   raise "Station should be a string" unless @name.is_a? String
 
-  def validate
-    raise "Station should has name" if @name.nil? || @name == ""
-    raise "Station should be a string" unless @name.is_a? String
-
-    @trains.each do |train|
-      raise "Station should contain only Train objects as trains" unless train.is_a? Train
-    end
-  end
+  #   @trains.each do |train|
+  #     raise "Station should contain only Train objects as trains" unless train.is_a? Train
+  #   end
+  # end
 end
