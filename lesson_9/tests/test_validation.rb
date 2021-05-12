@@ -5,7 +5,7 @@ require_relative "../validation"
 class Foo
   include Validation
 
-  attr_accessor :bar
+  attr_accessor :bar, :baz
 end
 
 foo = Foo.new
@@ -34,4 +34,18 @@ if foo.validate(:bar, :presence)
   puts "Error! validator 'presence' returns incorrect result for empty value"
 else
   puts "Validator 'presence' returns correct result for empty value"
+end
+
+foo.baz = ""
+if foo.validate(:baz, :type, String)
+  puts "Validator 'type' returns correct result"
+else
+  puts "Error! validator 'type' returns incorrect result"
+end
+
+foo.baz = 1
+if foo.validate(:baz, :type, Integer)
+  puts "Validator 'type' returns correct result"
+else
+  puts "Error! validator 'type' returns incorrect result"
 end

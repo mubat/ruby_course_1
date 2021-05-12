@@ -35,5 +35,11 @@ module Validation
       !instance_variable_get("@#{attr}".to_sym).nil? && !instance_variable_get("@#{attr}".to_sym).empty?
     end
 
+    ##
+    # validator. Check attribute value should by with requested type
+    #
+    def type(attr, *args)
+      instance_variable_get("@#{attr}".to_sym).instance_of?(args[0])
+    end
   end
 end
