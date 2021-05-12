@@ -29,6 +29,25 @@ module Accessors
         end
       end
     end
+
+    ##
+    # Creates getter and setter. But you can populate values type for attribute. And it will be set if type is correct
+    # Raise TypeError if type of new value differs from populated at initialization
+    def strong_attr_accessor(attr, type)
+      attr_name = "@#{attr}".to_sym
+
+      define_method(attr) do
+        instance_variable_get(attr_name)
+      end
+
+      define_method("#{attr}=".to_sym) do |value|
+        unless type == value.class
+          raise TypeError, "Wrong type of publised value. Should be #{type}, got  #{value.class}"
+        end
+
+        instance_variable_set(attr_name.to_sym, value || nil)
+      end
+    end
   end
 
   ##
