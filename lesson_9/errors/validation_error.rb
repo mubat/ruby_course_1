@@ -1,3 +1,8 @@
+# frozen_string_literal: true
+
+##
+# Exception uses in Validation module to describe failed validation.
+# Contains information about validation step: attribute, validator name, value to check
 class ValidationError < StandardError
   attr_accessor :attribute, :validator, :arguments, :checked_value
 
