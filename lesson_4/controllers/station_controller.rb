@@ -21,7 +21,11 @@ class StationController < Controller
 
   def add_station
     printf "Добавление новой станции.\n\tВведите название станции: "
-    @app.stations.push(Station.new(gets.chomp))
+    new_station = Station.new(gets.chomp)
+    puts("Ошибка при добавлении новой станции.") || return unless new_station.valid?
+
+    @app.stations.push(new_station)
+    puts "Станция успешно зарегистрирована"
   end
 
   def print_stations

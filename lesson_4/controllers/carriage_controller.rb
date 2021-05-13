@@ -16,7 +16,7 @@ class CarriageController < Controller
   end
 
   def hook_carriage_to_train
-    train = choose_element(@data.trains, "Выберите поезд из списка:")
+    train = choose_element(@app.trains, "Выберите поезд из списка:")
     return unless train
 
     if train.type == "грузовой"

@@ -9,6 +9,8 @@ require_relative "carriage"
 class PassengerCarriage < Carriage
   attr_reader :available_seats
 
+  validate :available_seats, :has_type, Integer
+
   def initialize(seat_numbers)
     super()
     raise ArgumentError("seat_numbers can't be equal or less than 0") if seat_numbers <= 0

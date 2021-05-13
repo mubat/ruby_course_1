@@ -70,6 +70,7 @@ class TrainController < Controller
   private
 
   def register_train(train)
+    train.validate!
     @app.trains.push(train)
     puts "Запись о поезде #{train} создана"
   end

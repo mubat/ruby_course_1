@@ -2,7 +2,7 @@
 
 require_relative "../carriages/carriage"
 require_relative "../../lesson_6/manufacturer"
-require_relative "../../lesson_7/validate"
+require_relative "../../lesson_9/validation"
 
 ##
 # Describes general actions and information about trains
@@ -16,7 +16,14 @@ class Train
   NUMBER_FORMAT = /^[а-я\w\d]{3}-?[а-я\w\d]{2}$/i.freeze
 
   include Manufacturer
-  include Validate
+  include Validation
+
+  validate :number, :presence
+  validate :number, :has_type, String
+  validate :number, :format, NUMBER_FORMAT
+  validate :speed, :has_type, Integer
+  validate :type, :presence
+  validate :type, :has_type, String
 
   # rubocop: disable Style/ClassVars
   @@registered_trains = []
@@ -28,7 +35,6 @@ class Train
     @speed = 0
     @type = type
     @@registered_trains.push(self)
-    validate
   end
 
   def speed_encrease(value = 10)
@@ -107,29 +113,29 @@ class Train
     end
   end
 
-  protected
+  # protected
 
-  def validate
-    validate_number
-    validate_speed
-    validate_type
-  end
+  # def validate
+  #   validate_number
+  #   validate_speed
+  #   validate_type
+  # end
 
-  private
+  # private
 
-  def validate_number
-    raise "Number can't be empty" if @number.nil? || @number == ""
-    raise "Number should be a string" unless @number.is_a? String
-    raise "Number has wrong format" if @number !~ NUMBER_FORMAT
-  end
+  # def validate_number
+  #   raise "Number can't be empty" if @number.nil? || @number == ""
+  #   raise "Number should be a string" unless @number.is_a? String
+  #   raise "Number has wrong format" if @number !~ NUMBER_FORMAT
+  # end
 
-  def validate_speed
-    raise "Speed should be a number" unless @speed.is_a? Numeric
-    raise "Speed should be more than 0 or equal" if @speed.negative?
-  end
+  # def validate_speed
+  #   raise "Speed should be a number" unless @speed.is_a? Numeric
+  #   raise "Speed should be more than 0 or equal" if @speed.negative?
+  # end
 
-  def validate_type
-    raise "Type can't be empty" if @type.nil? || @type == ""
-    raise "Type should be a string" unless @type.is_a? String
-  end
+  # def validate_type
+  #   raise "Type can't be empty" if @type.nil? || @type == ""
+  #   raise "Type should be a string" unless @type.is_a? String
+  # end
 end
